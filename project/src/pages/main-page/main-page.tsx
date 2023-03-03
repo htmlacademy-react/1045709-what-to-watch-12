@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../../components/logo/logo';
 import FilmCard from '../../components/film-card/film-card';
 import { FilmCardProps } from '../../types/film-card-props';
 
@@ -13,13 +14,8 @@ function MainPage(props: FilmCardProps): JSX.Element {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
-          <div className="logo">
-            <a href="#" className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+
+          < Logo />
 
           <ul className="user-block">
             <li className="user-block__item">
