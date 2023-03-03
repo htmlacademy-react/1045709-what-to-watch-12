@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../../components/logo/logo';
 import FilmCard from '../../components/film-card/film-card';
+import Footer from '../../components/footer/footer';
 import { FilmCardProps } from '../../types/film-card-props';
 
 function MainPage(props: FilmCardProps): JSX.Element {
@@ -127,19 +128,8 @@ function MainPage(props: FilmCardProps): JSX.Element {
           </div>
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="#" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+        < Footer />
 
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
       </div>
     </React.Fragment>
   );
