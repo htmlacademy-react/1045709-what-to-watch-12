@@ -1,10 +1,10 @@
 import React from 'react';
 import Logo from '../../components/logo/logo';
-import FilmCard from '../../components/film-card/film-card';
+import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 import { MainPageProps } from '../../types/main-page-props';
 
-function MainPage({headerFilm}: MainPageProps): JSX.Element {
+function MainPage({headerFilm, films}: MainPageProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
@@ -100,28 +100,7 @@ function MainPage({headerFilm}: MainPageProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-          </div>
+          <FilmList films={films}></FilmList>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
