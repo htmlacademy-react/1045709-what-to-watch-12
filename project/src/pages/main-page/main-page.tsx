@@ -2,9 +2,9 @@ import React from 'react';
 import Logo from '../../components/logo/logo';
 import FilmCard from '../../components/film-card/film-card';
 import Footer from '../../components/footer/footer';
-import { FilmCardProps } from '../../types/film-card-props';
+import { MainPageProps } from '../../types/main-page-props';
 
-function MainPage(props: FilmCardProps): JSX.Element {
+function MainPage({headerFilm}: MainPageProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
@@ -37,10 +37,10 @@ function MainPage(props: FilmCardProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{props.title}</h2>
+              <h2 className="film-card__title">{headerFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{props.genre}</span>
-                <span className="film-card__year">{props.year}</span>
+                <span className="film-card__genre">{headerFilm.genre}</span>
+                <span className="film-card__year">{headerFilm.year}</span>
               </p>
 
               <div className="film-card__buttons">

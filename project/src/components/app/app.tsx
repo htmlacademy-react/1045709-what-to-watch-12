@@ -8,15 +8,16 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import VideoPlayerPage from '../../pages/video-player-page/video-player-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
-import { FilmCardProps } from '../../types/film-card-props';
+import { MainPageProps } from '../../types/main-page-props';
 
-function App(props: FilmCardProps): JSX.Element {
+
+function App({headerFilm, films}: MainPageProps): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage title={props.title} genre={props.genre} year={props.year} />}
+          element={<MainPage headerFilm={headerFilm} films={films} />}
         />
         <Route
           path={AppRoute.Login}
