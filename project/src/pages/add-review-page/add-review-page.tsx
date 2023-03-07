@@ -1,6 +1,6 @@
 import Logo from '../../components/logo/logo';
 
-function AddReview(): JSX.Element {
+function AddReviewPage(): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -92,4 +92,4 @@ function AddReview(): JSX.Element {
   );
 }
 
-export default AddReview;
+export default AddReviewPage;

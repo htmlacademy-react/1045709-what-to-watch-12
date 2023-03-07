@@ -1,4 +1,4 @@
-function VideoPlayer(): JSX.Element {
+function VideoPlayerPage(): JSX.Element {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
@@ -35,4 +35,4 @@ function VideoPlayer(): JSX.Element {
   );
 }
 
-export default VideoPlayer;
+export default VideoPlayerPage;

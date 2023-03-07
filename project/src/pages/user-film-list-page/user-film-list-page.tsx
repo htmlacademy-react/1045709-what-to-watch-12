@@ -1,7 +1,7 @@
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 
-function UserFilmList(): JSX.Element {
+function UserFilmListPage(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -116,4 +116,4 @@ function UserFilmList(): JSX.Element {
   );
 }
 
-export default UserFilmList;
+export default UserFilmListPage;
