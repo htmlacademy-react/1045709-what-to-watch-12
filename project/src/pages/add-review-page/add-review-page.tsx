@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 
@@ -9,6 +9,7 @@ type AddReviewPageProps = {
 function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
   const params = useParams();
   const filmInReview = films.find((film) => film.id === Number(params.id));
+  const pageUrl = window.location.pathname;
 
   return (
     <section className="film-card film-card--full">
@@ -26,10 +27,10 @@ function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">{filmInReview?.filmInfo.title}</a>
+                <Link to={pageUrl.substring(0, pageUrl.lastIndexOf('/'))} className="breadcrumbs__link">{filmInReview?.filmInfo.title}</Link>
               </li>
               <li className="breadcrumbs__item">
-                <a href="#" className="breadcrumbs__link">Add review</a>
+                <Link to="#" className="breadcrumbs__link">Add review</Link>
               </li>
             </ul>
           </nav>

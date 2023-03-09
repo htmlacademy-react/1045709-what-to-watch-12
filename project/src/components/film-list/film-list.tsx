@@ -14,8 +14,8 @@ function FilmList({films}: FilmListProps): JSX.Element {
         (
           <FilmCard
             onMouseEnterHandler={() => {setActiveFilm(film.id);}}
-            key={film.id} title={film.filmInfo.title}
-            posterSrc={film.filmInfo.posterSrc}
+            key={film.id}
+            film={film}
           />
         )
       )}

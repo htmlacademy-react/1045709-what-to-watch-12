@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
@@ -60,7 +60,7 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">{films.length}</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to='review' className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
