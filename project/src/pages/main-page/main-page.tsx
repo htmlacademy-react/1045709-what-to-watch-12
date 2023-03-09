@@ -1,10 +1,11 @@
 import React from 'react';
 import Logo from '../../components/logo/logo';
-import FilmCard from '../../components/film-card/film-card';
+import UserBlock from '../../components/user-block/user-block';
+import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
-import { FilmCardProps } from '../../types/film-card-props';
+import { MainPageProps } from '../../types/main-page-props';
 
-function MainPage(props: FilmCardProps): JSX.Element {
+function MainPage({headerFilm, films}: MainPageProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
@@ -15,19 +16,8 @@ function MainPage(props: FilmCardProps): JSX.Element {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header film-card__head">
-
           < Logo />
-
-          <ul className="user-block">
-            <li className="user-block__item">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </li>
-            <li className="user-block__item">
-              <a href="#" className="user-block__link">Sign out</a>
-            </li>
-          </ul>
+          < UserBlock />
         </header>
 
         <div className="film-card__wrap">
@@ -37,10 +27,10 @@ function MainPage(props: FilmCardProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{props.title}</h2>
+              <h2 className="film-card__title">{headerFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{props.genre}</span>
-                <span className="film-card__year">{props.year}</span>
+                <span className="film-card__genre">{headerFilm.genre}</span>
+                <span className="film-card__year">{headerFilm.year}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -100,28 +90,7 @@ function MainPage(props: FilmCardProps): JSX.Element {
             </li>
           </ul>
 
-          <div className="catalog__films-list">
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-            < FilmCard />
-          </div>
+          <FilmList films={films}></FilmList>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>

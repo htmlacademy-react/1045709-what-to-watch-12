@@ -1,7 +1,7 @@
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 
-function Login(): JSX.Element {
+function LoginPage(): JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -33,4 +33,4 @@ function Login(): JSX.Element {
   );
 }
 
-export default Login;
+export default LoginPage;

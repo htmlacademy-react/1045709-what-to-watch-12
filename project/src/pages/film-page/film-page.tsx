@@ -1,8 +1,18 @@
 import React from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
+import UserBlock from '../../components/user-block/user-block';
 import Footer from '../../components/footer/footer';
 
-function Film(): JSX.Element {
+type AddReviewPageProps = {
+  films: Film[];
+}
+
+function FilmPage({films}: AddReviewPageProps): JSX.Element {
+  const params = useParams();
+  const filmInPage = films.find((film) => film.id === Number(params.id));
+
   return (
     <React.Fragment>
       <section className="film-card film-card--full">
@@ -14,27 +24,16 @@ function Film(): JSX.Element {
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header film-card__head">
-
             < Logo />
-
-            <ul className="user-block">
-              <li className="user-block__item">
-                <div className="user-block__avatar">
-                  <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-                </div>
-              </li>
-              <li className="user-block__item">
-                <a href="#" className="user-block__link">Sign out</a>
-              </li>
-            </ul>
+            < UserBlock />
           </header>
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{filmInPage?.filmInfo.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{filmInPage?.filmInfo.genre}</span>
+                <span className="film-card__year">{filmInPage?.filmInfo.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -49,9 +48,9 @@ function Film(): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">9</span>
+                  <span className="film-card__count">{films.length}</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+                <Link to='review' className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -60,7 +59,7 @@ function Film(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={filmInPage?.filmInfo.posterSrc} alt={filmInPage?.filmInfo.title} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
@@ -79,10 +78,10 @@ function Film(): JSX.Element {
               </nav>
 
               <div className="film-rating">
-                <div className="film-rating__score">8,9</div>
+                <div className="film-rating__score">{filmInPage?.filmInfo.rating}</div>
                 <p className="film-rating__meta">
                   <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
+                  <span className="film-rating__count">{filmInPage?.filmInfo.ratingVotesQuantity} ratings</span>
                 </p>
               </div>
 
@@ -91,9 +90,9 @@ function Film(): JSX.Element {
 
                 <p>Gustave prides himself on providing first-class service to the hotel&#39;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&#39;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
 
-                <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
+                <p className="film-card__director"><strong>Director: {filmInPage?.filmInfo.director}</strong></p>
 
-                <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                <p className="film-card__starring"><strong>Starring: {filmInPage?.filmInfo.actors.join(', ')} and other</strong></p>
               </div>
             </div>
           </div>
@@ -150,4 +149,4 @@ function Film(): JSX.Element {
   );
 }
 
-export default Film;
+export default FilmPage;

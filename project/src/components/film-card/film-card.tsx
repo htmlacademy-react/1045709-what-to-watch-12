@@ -1,11 +1,19 @@
-function FilmCard(): JSX.Element {
+import { Link } from 'react-router-dom';
+import { Film } from '../../types/film';
+
+type FilmCardProps = {
+  film: Film;
+  onMouseEnterHandler: () => void;
+};
+
+function FilmCard({film, onMouseEnterHandler}: FilmCardProps): JSX.Element {
   return (
-    <article className="small-film-card catalog__films-card">
+    <article onMouseEnter={onMouseEnterHandler} className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
-        <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
+        <img src={film.filmInfo.posterSrc} alt={film.filmInfo.title} width="280" height="175" />
       </div>
       <h3 className="small-film-card__title">
-        <a className="small-film-card__link" href="film-page.html">Bohemian Rhapsody</a>
+        <Link className="small-film-card__link" to={`films/${film.id}`}>{film.filmInfo.title}</Link>
       </h3>
     </article>
   );
