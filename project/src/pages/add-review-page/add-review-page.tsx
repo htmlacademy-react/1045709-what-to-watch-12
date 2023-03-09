@@ -1,6 +1,15 @@
+import { useParams } from 'react-router-dom';
+import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 
-function AddReviewPage(): JSX.Element {
+type AddReviewPageProps = {
+  films: Film[];
+}
+
+function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
+  const params = useParams();
+  const filmInReview = films.find((film) => film.id === Number(params.id));
+
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">
@@ -17,7 +26,7 @@ function AddReviewPage(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <a href="film-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                <a href="film-page.html" className="breadcrumbs__link">{filmInReview?.filmInfo.title}</a>
               </li>
               <li className="breadcrumbs__item">
                 <a href="#" className="breadcrumbs__link">Add review</a>
@@ -38,7 +47,7 @@ function AddReviewPage(): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src={filmInReview?.filmInfo.posterSrc} alt={filmInReview?.filmInfo.title} width="218" height="327" />
         </div>
       </div>
 

@@ -27,21 +27,21 @@ function App({headerFilm, films}: MainPageProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth} >
-              <UserFilmListPage />
+              <UserFilmListPage films={films} />
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmPage />}
+          element={<FilmPage films={films} />}
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewPage />}
+          element={<AddReviewPage films={films} />}
         />
         <Route
           path={AppRoute.VideoPlayer}
-          element={<VideoPlayerPage />}
+          element={<VideoPlayerPage films={films} />}
         />
         <Route
           path="*"

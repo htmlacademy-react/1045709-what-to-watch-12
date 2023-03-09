@@ -1,8 +1,17 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import Footer from '../../components/footer/footer';
 
-function FilmPage(): JSX.Element {
+type AddReviewPageProps = {
+  films: Film[];
+}
+
+function FilmPage({films}: AddReviewPageProps): JSX.Element {
+  const params = useParams();
+  const filmInPage = films.find((film) => film.id === Number(params.id));
+
   return (
     <React.Fragment>
       <section className="film-card film-card--full">
@@ -31,10 +40,10 @@ function FilmPage(): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{filmInPage?.filmInfo.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{filmInPage?.filmInfo.genre}</span>
+                <span className="film-card__year">{filmInPage?.filmInfo.releaseYear}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -49,7 +58,7 @@ function FilmPage(): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">9</span>
+                  <span className="film-card__count">{films.length}</span>
                 </button>
                 <a href="add-review.html" className="btn film-card__button">Add review</a>
               </div>
@@ -60,7 +69,7 @@ function FilmPage(): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={filmInPage?.filmInfo.posterSrc} alt={filmInPage?.filmInfo.title} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
@@ -79,10 +88,10 @@ function FilmPage(): JSX.Element {
               </nav>
 
               <div className="film-rating">
-                <div className="film-rating__score">8,9</div>
+                <div className="film-rating__score">{filmInPage?.filmInfo.rating}</div>
                 <p className="film-rating__meta">
                   <span className="film-rating__level">Very good</span>
-                  <span className="film-rating__count">240 ratings</span>
+                  <span className="film-rating__count">{filmInPage?.filmInfo.ratingVotesQuantity} ratings</span>
                 </p>
               </div>
 
@@ -91,9 +100,9 @@ function FilmPage(): JSX.Element {
 
                 <p>Gustave prides himself on providing first-class service to the hotel&#39;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&#39;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
 
-                <p className="film-card__director"><strong>Director: Wes Anderson</strong></p>
+                <p className="film-card__director"><strong>Director: {filmInPage?.filmInfo.director}</strong></p>
 
-                <p className="film-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                <p className="film-card__starring"><strong>Starring: {filmInPage?.filmInfo.actors.join(', ')} and other</strong></p>
               </div>
             </div>
           </div>
