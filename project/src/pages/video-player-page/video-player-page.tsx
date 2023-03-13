@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Film } from '../../types/film';
 
 type VideoPlayerPageProps = {
@@ -6,8 +6,7 @@ type VideoPlayerPageProps = {
 }
 
 function VideoPlayerPage({films}: VideoPlayerPageProps): JSX.Element {
-  const params = useParams();
-  const filmInVideo = films.find((film) => film.id === Number(params.id));
+  const filmInVideo = useGetFilmInPage(films);
 
   return (
     <div className="player">

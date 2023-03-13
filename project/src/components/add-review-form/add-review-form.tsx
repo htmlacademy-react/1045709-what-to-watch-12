@@ -1,12 +1,16 @@
 import { useState } from 'react';
 
+type ChangeEvent = {
+  target: { name: string; value: string };
+};
+
 function AddReviewForm(): JSX.Element {
   const [formData, setFormData] = useState({
     'rating': '',
     'review-text': ''
   });
 
-  const fieldChangeHandle = (evt: { target: { name: string; value: string } }) => {
+  const fieldChangeHandle = (evt: ChangeEvent) => {
     const {name, value} = evt.target;
     setFormData({...formData, [name]: value});
   };
@@ -21,7 +25,7 @@ function AddReviewForm(): JSX.Element {
           <input onChange={fieldChangeHandle} className="rating__input" id="star-9" type="radio" name="rating" value="9" />
           <label className="rating__label" htmlFor="star-9">Rating 9</label>
 
-          <input onChange={fieldChangeHandle} className="rating__input" id="star-8" type="radio" name="rating" value="8" />
+          <input onChange={fieldChangeHandle} className="rating__input" id="star-8" type="radio" name="rating" value="8" defaultChecked/>
           <label className="rating__label" htmlFor="star-8">Rating 8</label>
 
           <input onChange={fieldChangeHandle} className="rating__input" id="star-7" type="radio" name="rating" value="7" />
