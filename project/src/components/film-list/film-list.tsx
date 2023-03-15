@@ -7,7 +7,8 @@ type FilmListProps = {
 }
 
 function FilmList({films}: FilmListProps): JSX.Element {
-  const setActiveFilm = useState(0)[1];
+  const [, setActiveFilm] = useState(0);
+
   return (
     <div className="catalog__films-list">
       {films.map((film) =>

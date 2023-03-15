@@ -1,5 +1,6 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
@@ -10,8 +11,7 @@ type AddReviewPageProps = {
 }
 
 function FilmPage({films}: AddReviewPageProps): JSX.Element {
-  const params = useParams();
-  const filmInPage = films.find((film) => film.id === Number(params.id));
+  const filmInPage = useGetFilmInPage(films);
 
   return (
     <React.Fragment>

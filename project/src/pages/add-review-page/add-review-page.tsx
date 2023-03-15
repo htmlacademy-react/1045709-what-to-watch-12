@@ -1,4 +1,5 @@
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Film } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
@@ -9,8 +10,7 @@ type AddReviewPageProps = {
 }
 
 function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
-  const params = useParams();
-  const filmInReview = films.find((film) => film.id === Number(params.id));
+  const filmInReview = useGetFilmInPage(films);
   const pageUrl = window.location.pathname;
 
   return (
