@@ -31,7 +31,7 @@ export const films: Film[] = [
       description: 'ipsum dolor sit ',
       posterSrc: 'img/we-need-to-talk-about-kevin.jpg',
       videoSrc: 'https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm',
-      genre: 'Comdeian',
+      genre: 'Drama',
       director: 'Loki',
       actors: ['Alex', 'Sam']
     }
@@ -48,7 +48,7 @@ export const films: Film[] = [
       description: 'Lorem ipsum dolor sit',
       posterSrc: 'img/no-country-for-old-men.jpg',
       videoSrc: 'videoSrc',
-      genre: 'genre',
+      genre: 'Comedian',
       director: 'Rick',
       actors: ['Egor', 'Artem']
     }
@@ -65,7 +65,7 @@ export const films: Film[] = [
       description: 'ipsum dolor sit amet',
       posterSrc: 'img/bg-the-grand-budapest-hotel.jpg',
       videoSrc: 'videoSrc',
-      genre: 'genre',
+      genre: 'Comedian',
       director: 'Takeshi',
       actors: ['Tom', 'Rolan']
     }
