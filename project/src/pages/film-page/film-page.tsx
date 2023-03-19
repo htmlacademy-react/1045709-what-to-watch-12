@@ -51,7 +51,7 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">{films.length}</span>
                 </button>
-                <Link to='review' className="btn film-card__button">Add review</Link>
+                <Link to={`/films/${filmInPage.id}/review`} className="btn film-card__button">Add review</Link>
               </div>
             </div>
           </div>
