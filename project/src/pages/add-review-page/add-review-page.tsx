@@ -11,7 +11,6 @@ type AddReviewPageProps = {
 
 function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
   const filmInReview = useGetFilmInPage(films);
-  const pageUrl = window.location.pathname;
 
   return (
     <section className="film-card film-card--full">
@@ -29,7 +28,7 @@ function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={pageUrl.substring(0, pageUrl.lastIndexOf('/'))} className="breadcrumbs__link">{filmInReview?.filmInfo.title}</Link>
+                <Link to={`/films/${filmInReview?.id as number}/overview`} className="breadcrumbs__link">{filmInReview?.filmInfo.title}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <Link to="#" className="breadcrumbs__link">Add review</Link>

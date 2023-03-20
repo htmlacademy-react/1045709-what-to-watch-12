@@ -5,7 +5,7 @@ import FilmCardPlayer from './film-card-player/film-card-player';
 
 type FilmCardProps = {
   film: Film;
-  onMouseEnterHandler: () => void;
+  onMouseEnterHandler?: () => void;
 };
 
 function FilmCard({film, onMouseEnterHandler}: FilmCardProps): JSX.Element {
@@ -26,7 +26,7 @@ function FilmCard({film, onMouseEnterHandler}: FilmCardProps): JSX.Element {
       onMouseOut={handleOnMouseOut}
       className="small-film-card catalog__films-card"
     >
-      <Link to={`films/${film.id}`}>
+      <Link to={`/films/${film.id}/overview`}>
         {
           isActive
             ? <FilmCardPlayer videoSrc={film.filmInfo.videoSrc} posterSrc={film.filmInfo.posterSrc} />
@@ -37,7 +37,7 @@ function FilmCard({film, onMouseEnterHandler}: FilmCardProps): JSX.Element {
         }
       </Link>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`films/${film.id}`}>{film.filmInfo.title}</Link>
+        <Link className="small-film-card__link" to={`/films/${film.id}/overview`}>{film.filmInfo.title}</Link>
       </h3>
     </article>
   );
