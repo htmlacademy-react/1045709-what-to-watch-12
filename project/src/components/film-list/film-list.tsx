@@ -1,13 +1,10 @@
 import { useState } from 'react';
-import { Film } from '../../types/film';
+import { useAppSelector } from '../../hooks';
 import FilmCard from '../film-card/film-card';
 
-type FilmListProps = {
-  films: Film[];
-}
-
-function FilmList({films}: FilmListProps): JSX.Element {
+function FilmList(): JSX.Element {
   const [, setActiveFilm] = useState(0);
+  const films = useAppSelector((state) => state.films);
 
   return (
     <div className="catalog__films-list">
