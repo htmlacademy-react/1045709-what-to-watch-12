@@ -26,8 +26,7 @@ function ReviewTab({film}: ReviewTabProps): JSX.Element {
         <div className="film-card__reviews-col">
           {film.reviews.slice(0, Math.ceil(film.reviews.length / 2)).map((review) =>
             (
-              // eslint-disable-next-line react/jsx-key
-              <div className="review">
+              <div key={review.author} className="review">
                 <blockquote className="review__quote">
                   <p className="review__text">{review.comment}</p>
                   <footer className="review__details">
