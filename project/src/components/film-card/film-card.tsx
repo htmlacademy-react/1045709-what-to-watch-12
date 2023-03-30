@@ -5,10 +5,9 @@ import FilmCardPlayer from './film-card-player/film-card-player';
 
 type FilmCardProps = {
   film: Film;
-  onMouseEnterHandler?: () => void;
 };
 
-function FilmCard({film, onMouseEnterHandler}: FilmCardProps): JSX.Element {
+function FilmCard({film}: FilmCardProps): JSX.Element {
   const [isActive, setIsActive] = useState(false);
 
   const handleOnMouseOver = () => {
@@ -21,7 +20,6 @@ function FilmCard({film, onMouseEnterHandler}: FilmCardProps): JSX.Element {
 
   return (
     <article
-      onMouseEnter={onMouseEnterHandler}
       onMouseOver={handleOnMouseOver}
       onMouseOut={handleOnMouseOut}
       className="small-film-card catalog__films-card"

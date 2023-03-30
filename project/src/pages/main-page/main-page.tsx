@@ -61,9 +61,6 @@ function MainPage({headerFilm}: MainPageProps): JSX.Element {
           < GenreFiltersList />
           < FilmList />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
         </section>
 
         < Footer />
