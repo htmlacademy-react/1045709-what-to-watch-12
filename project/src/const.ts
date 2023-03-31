@@ -55,3 +55,6 @@ export const FiltersByGenre = {
     filterValue: 'Thriller'
   },
 } as const;
+
+export const DEFAULT_RENDERED_FILMS_QUANTITY = 8;
+export const FILMS_TO_RENDER_QUANTITY = 8;
