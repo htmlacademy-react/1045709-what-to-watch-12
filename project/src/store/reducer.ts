@@ -1,11 +1,18 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeGenreAction, renderMoreFilms, resetRenderedFilms, filterFilmsByGenreAction, loadFilms, requireAuthorization } from './action';
-import { films } from '../mocks/films';
+import { Film } from '../types/film';
 import { FiltersByGenre, AuthorizationStatus, DEFAULT_RENDERED_FILMS_QUANTITY, FILMS_TO_RENDER_QUANTITY } from '../const';
 
-const initialState = {
-  genre: FiltersByGenre.ALL_GENRES.filterValue as string,
-  films: films,
+type InitialState = {
+  genre: string;
+  films: Film[];
+  renderedFilmsQuantity: number;
+  authorizationStatus: AuthorizationStatus;
+}
+
+const initialState: InitialState = {
+  genre: FiltersByGenre.ALL_GENRES.filterValue,
+  films: [],
   renderedFilmsQuantity: DEFAULT_RENDERED_FILMS_QUANTITY,
   authorizationStatus: AuthorizationStatus.Unknown
 };
