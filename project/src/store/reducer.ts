@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeGenreAction, renderMoreFilms, resetRenderedFilms, filterFilmsByGenreAction } from './action';
+import { changeGenreAction, renderMoreFilms, resetRenderedFilms, filterFilmsByGenreAction, loadFilms } from './action';
 import { films } from '../mocks/films';
 import { FiltersByGenre, DEFAULT_RENDERED_FILMS_QUANTITY, FILMS_TO_RENDER_QUANTITY } from '../const';
 
@@ -27,6 +27,9 @@ const reducer = createReducer(initialState, (builder) => {
         return;
       }
       state.films = films.filter((fllm) => fllm.filmInfo.genre === action.payload);
+    })
+    .addCase(loadFilms, (state, action) => {
+      state.films = action.payload;
     });
 });
 
