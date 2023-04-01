@@ -1,12 +1,13 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeGenreAction, renderMoreFilms, resetRenderedFilms, filterFilmsByGenreAction, loadFilms } from './action';
+import { changeGenreAction, renderMoreFilms, resetRenderedFilms, filterFilmsByGenreAction, loadFilms, requireAuthorization } from './action';
 import { films } from '../mocks/films';
-import { FiltersByGenre, DEFAULT_RENDERED_FILMS_QUANTITY, FILMS_TO_RENDER_QUANTITY } from '../const';
+import { FiltersByGenre, AuthorizationStatus, DEFAULT_RENDERED_FILMS_QUANTITY, FILMS_TO_RENDER_QUANTITY } from '../const';
 
 const initialState = {
   genre: FiltersByGenre.ALL_GENRES.filterValue as string,
   films: films,
-  renderedFilmsQuantity: DEFAULT_RENDERED_FILMS_QUANTITY
+  renderedFilmsQuantity: DEFAULT_RENDERED_FILMS_QUANTITY,
+  authorizationStatus: AuthorizationStatus.Unknown
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -30,6 +31,9 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 

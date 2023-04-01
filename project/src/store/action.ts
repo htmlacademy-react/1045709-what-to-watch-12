@@ -1,5 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Film } from '../types/film';
+import { AuthorizationStatus } from '../const';
 
 export const changeGenreAction = createAction('/activeGenre', (genre: string) => ({
   payload: genre
@@ -14,3 +15,5 @@ export const filterFilmsByGenreAction = createAction('/filmsByGenre', (genre: st
 }));
 
 export const loadFilms = createAction<Film[]>('data/loadFilms');
+
+export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
