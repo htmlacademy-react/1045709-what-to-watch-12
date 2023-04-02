@@ -5,6 +5,9 @@ import App from './components/app/app';
 import ErrorMessage from './components/error-message/error-message';
 import { films } from './mocks/films';
 import { store } from './store';
+import { checkAuthAction } from './store/api-actions';
+
+store.dispatch(checkAuthAction());
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
