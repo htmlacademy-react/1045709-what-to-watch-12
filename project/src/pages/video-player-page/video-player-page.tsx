@@ -1,8 +1,8 @@
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
-import { Film } from '../../types/film';
+import { Films } from '../../types/film';
 
 type VideoPlayerPageProps = {
-  films: Film[];
+  films: Films;
 }
 
 function VideoPlayerPage({films}: VideoPlayerPageProps): JSX.Element {
@@ -10,7 +10,7 @@ function VideoPlayerPage({films}: VideoPlayerPageProps): JSX.Element {
 
   return (
     <div className="player">
-      <video src={filmInVideo?.filmInfo.videoSrc} className="player__video" poster="img/player-poster.jpg"></video>
+      <video src={filmInVideo.videoLink} className="player__video" poster="img/player-poster.jpg"></video>
 
       <button type="button" className="player__exit">Exit</button>
 

@@ -2,7 +2,8 @@ import { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state.js';
 import { Films } from '../types/film.js';
-import { loadFilms, requireAuthorization, setError } from './action';
+import { Reviews } from '../types/review.js';
+import { loadFilms, loadReviews, requireAuthorization, setFilmsDataLoadingStatus, setReviewsDataLoadingStatus, setError } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -26,8 +27,26 @@ export const fetchFilmAction = createAsyncThunk<void, undefined, {
 }>(
   'data/fetchFilms',
   async (_arg, {dispatch, extra: api}) => {
+    dispatch(setFilmsDataLoadingStatus(true));
     const {data} = await api.get<Films>(APIRoute.Films);
+    // eslint-disable-next-line no-console
+    console.log(data);
+    dispatch(setFilmsDataLoadingStatus(false));
     dispatch(loadFilms(data));
+  },
+);
+
+export const fetchReviewsAction = createAsyncThunk<void, number, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchReviews',
+  async (filmId: number, {dispatch, extra: api}) => {
+    dispatch(setReviewsDataLoadingStatus(true));
+    const {data} = await api.get<Reviews>(`${APIRoute.Reviews as string}/${filmId}`);
+    dispatch(setReviewsDataLoadingStatus(false));
+    dispatch(loadReviews(data));
   },
 );
 

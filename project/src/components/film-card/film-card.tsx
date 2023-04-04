@@ -27,15 +27,15 @@ function FilmCard({film}: FilmCardProps): JSX.Element {
       <Link to={`/films/${film.id}/overview`}>
         {
           isActive
-            ? <FilmCardPlayer videoSrc={film.filmInfo.videoSrc} posterSrc={film.filmInfo.posterSrc} />
+            ? <FilmCardPlayer videoSrc={film.videoLink} posterSrc={film.previewImage} />
             :
             <div className="small-film-card__image">
-              <img src={film.filmInfo.posterSrc} alt={film.filmInfo.title} width="280" height="175" />
+              <img src={film.previewImage} alt={film.name} width="280" height="175" />
             </div>
         }
       </Link>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`/films/${film.id}/overview`}>{film.filmInfo.title}</Link>
+        <Link className="small-film-card__link" to={`/films/${film.id}/overview`}>{film.name}</Link>
       </h3>
     </article>
   );

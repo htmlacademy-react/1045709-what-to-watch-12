@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { store } from '../../store';
+import { fetchReviewsAction } from '../../store/api-actions';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
-import { Film } from '../../types/film';
+import { Films } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
@@ -9,11 +11,12 @@ import MoreLikeFilms from '../../components/more-like-films/more-like-films';
 import Footer from '../../components/footer/footer';
 
 type AddReviewPageProps = {
-  films: Film[];
+  films: Films;
 }
 
 function FilmPage({films}: AddReviewPageProps): JSX.Element {
-  const filmInPage = useGetFilmInPage(films) as Film;
+  const filmInPage = useGetFilmInPage(films);
+  store.dispatch(fetchReviewsAction(filmInPage.id));
 
   return (
     <React.Fragment>
@@ -32,10 +35,10 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">{filmInPage?.filmInfo.title}</h2>
+              <h2 className="film-card__title">{filmInPage.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{filmInPage?.filmInfo.genre}</span>
-                <span className="film-card__year">{filmInPage?.filmInfo.releaseYear}</span>
+                <span className="film-card__genre">{filmInPage.genre}</span>
+                <span className="film-card__year">{filmInPage.released}</span>
               </p>
 
               <div className="film-card__buttons">
@@ -61,7 +64,7 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src={filmInPage?.filmInfo.posterSrc} alt={filmInPage?.filmInfo.title} width="218" height="327" />
+              <img src={filmInPage.posterImage} alt={filmInPage.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">

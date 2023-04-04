@@ -4,7 +4,15 @@ import UserBlock from '../../components/user-block/user-block';
 import GenreFiltersList from '../../components/genre-filters-list/genre-filters-list';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
-import { MainPageProps } from '../../types/main-page-props';
+
+export type MainPageProps = {
+  headerFilm: {
+    title: string;
+    genre: string;
+    year: number;
+  };
+}
+
 
 function MainPage({headerFilm}: MainPageProps): JSX.Element {
   return (

@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { Film } from '../types/film';
+import { Film, Films } from '../types/film';
 
-function useGetFilmInPage(films: Film[]) {
+function useGetFilmInPage(films: Films) {
   const params = useParams();
-  return films.find((film) => film.id === Number(params.id));
+  return films.find((film) => film.id === Number(params.id)) as Film;
 }
 
 export default useGetFilmInPage;

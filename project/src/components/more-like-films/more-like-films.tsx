@@ -9,7 +9,7 @@ type MoreLikeFilmsProps = {
 }
 
 function MoreLikeFilms({films, filmInPage}: MoreLikeFilmsProps): JSX.Element {
-  const moreLikeFilms = films.filter((film) => film.filmInfo.genre === filmInPage.filmInfo.genre && film.id !== filmInPage.id).slice(0, MORE_LIKE_FILMS_QUANTITY);
+  const moreLikeFilms = films.filter((film) => film.genre === filmInPage.genre && film.id !== filmInPage.id).slice(0, MORE_LIKE_FILMS_QUANTITY);
 
   return (
     <section className="catalog catalog--like-this">

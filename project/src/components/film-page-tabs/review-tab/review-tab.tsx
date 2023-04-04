@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../../hooks';
 import { Film } from '../../../types/film';
+import LoadingScreen from '../../../pages/loading-screen/loading-screent';
 
 type ReviewTabProps = {
   film: Film;
 }
 
 function ReviewTab({film}: ReviewTabProps): JSX.Element {
+  const isReviewsDataLoading = useAppSelector((state) => state.isReviewsDataLoading);
+  const reviews = useAppSelector((state) => state.reviews);
+
   return (
     <React.Fragment>
       <nav className="film-nav film-card__nav">
@@ -22,40 +27,41 @@ function ReviewTab({film}: ReviewTabProps): JSX.Element {
           </li>
         </ul>
       </nav>
-      <div className="film-card__reviews film-card__row">
-        <div className="film-card__reviews-col">
-          {film.reviews.slice(0, Math.ceil(film.reviews.length / 2)).map((review) =>
-            (
-              <div key={review.author} className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">{review.comment}</p>
-                  <footer className="review__details">
-                    <cite className="review__author">{review.author}</cite>
-                    <time className="review__date" dateTime={review.date}>{review.date}</time>
-                  </footer>
-                </blockquote>
-                <div className="review__rating">{review.rating}</div>
-              </div>
-            )
-          )}
-        </div>
-        <div className="film-card__reviews-col">
-          {film.reviews.slice(Math.ceil(film.reviews.length / 2)).map((review) =>
-            (
-              <div key={review.author} className="review">
-                <blockquote className="review__quote">
-                  <p className="review__text">{review.comment}</p>
-                  <footer className="review__details">
-                    <cite className="review__author">{review.author}</cite>
-                    <time className="review__date" dateTime={review.date}>{review.date}</time>
-                  </footer>
-                </blockquote>
-                <div className="review__rating">{review.rating}</div>
-              </div>
-            )
-          )}
-        </div>
-      </div>
+      {isReviewsDataLoading ? <LoadingScreen /> :
+        <div className="film-card__reviews film-card__row">
+          <div className="film-card__reviews-col">
+            {reviews.slice(0, Math.ceil(reviews.length / 2)).map((review) =>
+              (
+                <div key={review.id} className="review">
+                  <blockquote className="review__quote">
+                    <p className="review__text">{review.comment}</p>
+                    <footer className="review__details">
+                      <cite className="review__author">{review.user.name}</cite>
+                      <time className="review__date" dateTime={review.date}>{review.date}</time>
+                    </footer>
+                  </blockquote>
+                  <div className="review__rating">{review.rating}</div>
+                </div>
+              )
+            )}
+          </div>
+          <div className="film-card__reviews-col">
+            {reviews.slice(Math.ceil(reviews.length / 2)).map((review) =>
+              (
+                <div key={review.id} className="review">
+                  <blockquote className="review__quote">
+                    <p className="review__text">{review.comment}</p>
+                    <footer className="review__details">
+                      <cite className="review__author">{review.user.name}</cite>
+                      <time className="review__date" dateTime={review.date}>{review.date}</time>
+                    </footer>
+                  </blockquote>
+                  <div className="review__rating">{review.rating}</div>
+                </div>
+              )
+            )}
+          </div>
+        </div>}
     </React.Fragment>
   );
 }
