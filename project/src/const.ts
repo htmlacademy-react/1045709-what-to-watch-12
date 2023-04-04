@@ -27,7 +27,7 @@ export const FiltersByGenre = {
   },
   COMEDIES: {
     filterName: 'Comedies',
-    filterValue: 'Comedian'
+    filterValue: 'Comedy'
   },
   CRIME: {
     filterName: 'Crime',

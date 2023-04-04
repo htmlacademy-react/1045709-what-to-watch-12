@@ -7,6 +7,7 @@ import { FiltersByGenre, AuthorizationStatus, DEFAULT_RENDERED_FILMS_QUANTITY, F
 type InitialState = {
   genre: string;
   films: Films;
+  filteredFilms: Films;
   reviews: Reviews;
   renderedFilmsQuantity: number;
   authorizationStatus: AuthorizationStatus;
@@ -18,6 +19,7 @@ type InitialState = {
 const initialState: InitialState = {
   genre: FiltersByGenre.ALL_GENRES.filterValue,
   films: [],
+  filteredFilms: [],
   reviews: [],
   renderedFilmsQuantity: DEFAULT_RENDERED_FILMS_QUANTITY,
   authorizationStatus: AuthorizationStatus.Unknown,
@@ -32,21 +34,22 @@ const reducer = createReducer(initialState, (builder) => {
       state.renderedFilmsQuantity = DEFAULT_RENDERED_FILMS_QUANTITY;
       state.genre = action.payload;
     })
+    .addCase(filterFilmsByGenreAction, (state, action) => {
+      if (action.payload === FiltersByGenre.ALL_GENRES.filterValue) {
+        state.filteredFilms = state.films;
+        return;
+      }
+      state.filteredFilms = state.films.filter((fllm) => fllm.genre === action.payload);
+    })
     .addCase(renderMoreFilms, (state) => {
       state.renderedFilmsQuantity += FILMS_TO_RENDER_QUANTITY;
     })
     .addCase(resetRenderedFilms, (state) => {
       state.renderedFilmsQuantity = DEFAULT_RENDERED_FILMS_QUANTITY;
     })
-    .addCase(filterFilmsByGenreAction, (state, action) => {
-      // if (action.payload === FiltersByGenre.ALL_GENRES.filterValue) {
-      //   state.films = films;
-      //   return;
-      // }
-      // state.films = films.filter((fllm) => fllm.filmInfo.genre === action.payload);
-    })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
+      state.filteredFilms = action.payload;
     })
     .addCase(loadReviews, (state, action) => {
       state.reviews = action.payload;

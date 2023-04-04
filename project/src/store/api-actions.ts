@@ -29,8 +29,6 @@ export const fetchFilmAction = createAsyncThunk<void, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     dispatch(setFilmsDataLoadingStatus(true));
     const {data} = await api.get<Films>(APIRoute.Films);
-    // eslint-disable-next-line no-console
-    console.log(data);
     dispatch(setFilmsDataLoadingStatus(false));
     dispatch(loadFilms(data));
   },
