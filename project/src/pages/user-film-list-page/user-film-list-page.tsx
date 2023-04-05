@@ -2,10 +2,10 @@ import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
-import { Film } from '../../types/film';
+import { Films } from '../../types/film';
 
 type UserFilmListPageProps = {
-  films: Film[];
+  films: Films;
 }
 
 function UserFilmListPage({films}: UserFilmListPageProps): JSX.Element {

@@ -1,19 +1,21 @@
-import { Review } from './review';
-
 export type Film = {
   id: number;
-  reviews: Review[];
-  filmInfo: {
-    rating: number;
-    ratingVotesQuantity: number;
-    duration: number;
-    releaseYear: number;
-    title: string;
-    description: string;
-    posterSrc: string;
-    videoSrc: string;
-    genre: string;
-    director: string;
-    actors: string[];
-  };
+  name: string;
+  posterImage: string;
+  previewImage: string;
+  backgroundImage: string;
+  backgroundColor: string;
+  videoLink: string;
+  previewVideoLink: string;
+  description: string;
+  rating: number;
+  scoresCount: number;
+  director: string;
+  starring: string[];
+  runTime: number;
+  genre: string;
+  released: number;
+  isFavorite: boolean;
 }
+
+export type Films = Film[];

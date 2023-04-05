@@ -13,6 +13,13 @@ export enum AuthorizationStatus {
   Unknown = 'UNKNOWN',
 }
 
+export enum APIRoute {
+  Films = '/films',
+  Reviews = '/comments',
+  Login = '/login',
+  Logout = '/logout',
+}
+
 export const FiltersByGenre = {
   ALL_GENRES: {
     filterName: 'All genres',
@@ -20,7 +27,7 @@ export const FiltersByGenre = {
   },
   COMEDIES: {
     filterName: 'Comedies',
-    filterValue: 'Comedian'
+    filterValue: 'Comedy'
   },
   CRIME: {
     filterName: 'Crime',
@@ -58,3 +65,5 @@ export const FiltersByGenre = {
 
 export const DEFAULT_RENDERED_FILMS_QUANTITY = 8;
 export const FILMS_TO_RENDER_QUANTITY = 8;
+
+export const TIMEOUT_SHOW_ERROR = 2000;

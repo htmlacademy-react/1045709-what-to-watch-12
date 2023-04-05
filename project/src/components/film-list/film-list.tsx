@@ -6,7 +6,7 @@ import FilmCard from '../film-card/film-card';
 import ShowMoreBtn from '../show-more-btn/show-more-btn';
 
 function FilmList(): JSX.Element {
-  const films = useAppSelector((state) => state.films);
+  const films = useAppSelector((state) => state.filteredFilms);
   const renderedFilmsQuantity = useAppSelector((state) => state.renderedFilmsQuantity);
   const dispatch = useAppDispatch();
 

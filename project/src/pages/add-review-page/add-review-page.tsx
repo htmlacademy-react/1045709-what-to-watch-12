@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
-import { Film } from '../../types/film';
+import { Films } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 
 type AddReviewPageProps = {
-  films: Film[];
+  films: Films;
 }
 
 function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
@@ -28,7 +28,7 @@ function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${filmInReview?.id as number}/overview`} className="breadcrumbs__link">{filmInReview?.filmInfo.title}</Link>
+                <Link to={`/films/${filmInReview.id}/overview`} className="breadcrumbs__link">{filmInReview.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <Link to="#" className="breadcrumbs__link">Add review</Link>
@@ -40,7 +40,7 @@ function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
         </header>
 
         <div className="film-card__poster film-card__poster--small">
-          <img src={filmInReview?.filmInfo.posterSrc} alt={filmInReview?.filmInfo.title} width="218" height="327" />
+          <img src={filmInReview.posterImage} alt={filmInReview.name} width="218" height="327" />
         </div>
       </div>
 
