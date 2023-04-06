@@ -1,5 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeGenreAction, renderMoreFilms, resetRenderedFilms, filterFilmsByGenreAction, loadFilms, loadReviews, setFilmsDataLoadingStatus, requireAuthorization, setError, setReviewsDataLoadingStatus } from './action';
+import { changeGenreAction, renderMoreFilms, resetRenderedFilms, filterFilmsByGenreAction, loadFilms, loadReviews, setFilmsDataLoadingStatus, requireAuthorization, setReviewsDataLoadingStatus } from './action';
 import { Films } from '../types/film';
 import { Reviews } from '../types/review';
 import { FiltersByGenre, AuthorizationStatus, DEFAULT_RENDERED_FILMS_QUANTITY, FILMS_TO_RENDER_QUANTITY } from '../const';
@@ -13,7 +13,6 @@ type InitialState = {
   authorizationStatus: AuthorizationStatus;
   isFilmsDataLoading: boolean;
   isReviewsDataLoading: boolean;
-  error: string | null;
 }
 
 const initialState: InitialState = {
@@ -25,7 +24,6 @@ const initialState: InitialState = {
   authorizationStatus: AuthorizationStatus.Unknown,
   isFilmsDataLoading: false,
   isReviewsDataLoading: false,
-  error: null,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -62,9 +60,6 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
-    })
-    .addCase(setError, (state, action) => {
-      state.error = action.payload;
     });
 });
 
