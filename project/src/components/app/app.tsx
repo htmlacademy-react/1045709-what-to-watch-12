@@ -1,4 +1,4 @@
-import {Route, BrowserRouter, Routes} from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import LoadingScreen from '../../pages/loading-screen/loading-screent';
@@ -10,6 +10,8 @@ import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import VideoPlayerPage from '../../pages/video-player-page/video-player-page';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
+import HistoryRouter from '../history-route/history-route';
+import browserHistory from '../../browser-history';
 
 export type AppProps = {
   headerFilm: {
@@ -31,7 +33,7 @@ function App({headerFilm}: AppProps): JSX.Element {
   }
 
   return (
-    <BrowserRouter>
+    <HistoryRouter history={browserHistory}>
       <Routes>
         <Route
           path={AppRoute.Root}
@@ -66,7 +68,7 @@ function App({headerFilm}: AppProps): JSX.Element {
           element={<NotFoundPage />}
         />
       </Routes>
-    </BrowserRouter>
+    </HistoryRouter>
   );
 }
 
