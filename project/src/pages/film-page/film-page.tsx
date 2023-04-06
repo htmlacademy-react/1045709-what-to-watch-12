@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
 import { fetchReviewsAction } from '../../store/api-actions';
@@ -16,7 +17,10 @@ type AddReviewPageProps = {
 
 function FilmPage({films}: AddReviewPageProps): JSX.Element {
   const filmInPage = useGetFilmInPage(films);
-  store.dispatch(fetchReviewsAction(filmInPage.id));
+
+  useEffect(() => {
+    store.dispatch(fetchReviewsAction(filmInPage.id));
+  }, [filmInPage.id]);
 
   return (
     <React.Fragment>
