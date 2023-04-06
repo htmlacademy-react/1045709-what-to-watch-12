@@ -5,6 +5,7 @@ import { store } from '../../store';
 import { fetchReviewsAction } from '../../store/api-actions';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Films } from '../../types/film';
+import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
@@ -19,8 +20,15 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
   const filmInPage = useGetFilmInPage(films);
 
   useEffect(() => {
-    store.dispatch(fetchReviewsAction(filmInPage.id));
-  }, [filmInPage.id]);
+    if (filmInPage) {
+      store.dispatch(fetchReviewsAction(filmInPage.id));
+    }
+  }, [filmInPage]);
+
+
+  if (!filmInPage) {
+    return <NotFoundPage />;
+  }
 
   return (
     <React.Fragment>

@@ -1,5 +1,6 @@
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Films } from '../../types/film';
+import NotFoundPage from '../not-found-page/not-found-page';
 
 type VideoPlayerPageProps = {
   films: Films;
@@ -7,6 +8,10 @@ type VideoPlayerPageProps = {
 
 function VideoPlayerPage({films}: VideoPlayerPageProps): JSX.Element {
   const filmInVideo = useGetFilmInPage(films);
+
+  if (!filmInVideo) {
+    return <NotFoundPage />;
+  }
 
   return (
     <div className="player">
