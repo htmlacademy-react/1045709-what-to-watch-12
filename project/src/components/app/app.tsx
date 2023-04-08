@@ -54,7 +54,11 @@ function App({promoFilm}: AppProps): JSX.Element {
         />
         <Route
           path={AppRoute.AddReview}
-          element={<AddReviewPage films={films} />}
+          element={
+            <PrivateRoute authorizationStatus={authorizationStatus} >
+              <AddReviewPage films={films} />
+            </PrivateRoute>
+          }
         />
         <Route
           path={AppRoute.VideoPlayer}
