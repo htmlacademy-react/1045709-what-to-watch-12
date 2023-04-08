@@ -50,7 +50,7 @@ function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
       </div>
 
       <div className="add-review">
-        < AddReviewForm />
+        <AddReviewForm filmInReview={filmInReview} />
       </div>
 
     </section>

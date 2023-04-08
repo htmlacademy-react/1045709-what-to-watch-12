@@ -9,8 +9,8 @@ type ReviewTabProps = {
 }
 
 function ReviewTab({film}: ReviewTabProps): JSX.Element {
-  const isReviewsDataLoading = useAppSelector((state) => state.isReviewsDataLoading);
-  const reviews = useAppSelector((state) => state.reviews);
+  const isReviewsDataLoading = useAppSelector((state) => state.reviews.isLoading);
+  const reviews = useAppSelector((state) => state.reviews.data);
 
   return (
     <React.Fragment>

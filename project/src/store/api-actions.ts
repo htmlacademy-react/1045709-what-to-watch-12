@@ -1,9 +1,10 @@
-import { AxiosInstance } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { AppDispatch, State } from '../types/state.js';
 import { Films } from '../types/film.js';
-import { Reviews } from '../types/review.js';
-import { loadFilms, loadReviews, requireAuthorization, setFilmsDataLoadingStatus, setReviewsDataLoadingStatus, redirectToRoute } from './action';
+import { Reviews, AddReview } from '../types/review.js';
+import { loadFilms, loadReviews, requireAuthorization, setFilmsDataLoadingStatus, setReviewsDataLoadingStatus, redirectToRoute, setReviewDataPostingStatus } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
 import { AuthData } from '../types/auth-data';
@@ -34,6 +35,28 @@ export const fetchReviewsAction = createAsyncThunk<void, number, {
     const {data} = await api.get<Reviews>(`${APIRoute.Reviews as string}/${filmId}`);
     dispatch(setReviewsDataLoadingStatus(false));
     dispatch(loadReviews(data));
+  },
+);
+
+export const postReviewAction = createAsyncThunk<void, AddReview, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/postReview',
+  async ({comment, rating, filmId}, {dispatch, extra: api}) => {
+    try {
+      dispatch(setReviewDataPostingStatus(true));
+      await api.post<AddReview>(`${APIRoute.Reviews}/${filmId}`, {comment, rating});
+      dispatch(setReviewDataPostingStatus(false));
+      dispatch(redirectToRoute(`${AppRoute.Films}/${filmId}/overview`));
+    }
+    catch(err) {
+      dispatch(setReviewDataPostingStatus(false));
+      if (axios.isAxiosError(err)) {
+        toast.error(err.message);
+      }
+    }
   },
 );
 

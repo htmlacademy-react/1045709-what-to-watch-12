@@ -1,7 +1,7 @@
 import { createAction } from '@reduxjs/toolkit';
 import { Films } from '../types/film';
 import { Reviews } from '../types/review';
-import { AppRoute, AuthorizationStatus } from '../const';
+import { AuthorizationStatus } from '../const';
 
 export const changeGenreAction = createAction('/activeGenre', (genre: string) => ({
   payload: genre
@@ -23,6 +23,8 @@ export const setFilmsDataLoadingStatus = createAction<boolean>('data/setFilmsDat
 
 export const setReviewsDataLoadingStatus = createAction<boolean>('data/setReviewsDataLoadingStatus');
 
+export const setReviewDataPostingStatus = createAction<boolean>('data/setReviewDataPostingStatus');
+
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');
 
-export const redirectToRoute = createAction<AppRoute>('/redirectToRoute');
+export const redirectToRoute = createAction<string>('/redirectToRoute');
