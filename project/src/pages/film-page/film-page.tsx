@@ -1,9 +1,11 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
 import { fetchReviewsAction } from '../../store/api-actions';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Films } from '../../types/film';
+import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
@@ -16,7 +18,17 @@ type AddReviewPageProps = {
 
 function FilmPage({films}: AddReviewPageProps): JSX.Element {
   const filmInPage = useGetFilmInPage(films);
-  store.dispatch(fetchReviewsAction(filmInPage.id));
+
+  useEffect(() => {
+    if (filmInPage) {
+      store.dispatch(fetchReviewsAction(filmInPage.id));
+    }
+  }, [filmInPage]);
+
+
+  if (!filmInPage) {
+    return <NotFoundPage />;
+  }
 
   return (
     <React.Fragment>

@@ -3,8 +3,9 @@ export enum AppRoute {
   Login = '/login',
   MyList = '/mylist',
   Film = '/films/:id/:tab',
+  Films = '/films',
   AddReview = '/films/:id/review',
-  VideoPlayer = '/player/:id'
+  VideoPlayer = '/player/:id',
 }
 
 export enum AuthorizationStatus {
@@ -66,4 +67,4 @@ export const FiltersByGenre = {
 export const DEFAULT_RENDERED_FILMS_QUANTITY = 8;
 export const FILMS_TO_RENDER_QUANTITY = 8;
 
-export const TIMEOUT_SHOW_ERROR = 2000;
+export const REDIRECT_TO_ROUTE_ACTION_TYPE = '/redirectToRoute';
