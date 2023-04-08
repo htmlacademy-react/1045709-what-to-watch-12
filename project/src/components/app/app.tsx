@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import {AppRoute, AuthorizationStatus} from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { PromoFilm } from '../../types/film';
 import LoadingScreen from '../../pages/loading-screen/loading-screent';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -14,17 +15,13 @@ import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 
 export type AppProps = {
-  headerFilm: {
-    title: string;
-    genre: string;
-    year: number;
-  };
+  promoFilm: PromoFilm;
 }
 
-function App({headerFilm}: AppProps): JSX.Element {
+function App({promoFilm}: AppProps): JSX.Element {
   const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isFilmsDataLoading = useAppSelector((state) => state.isFilmsDataLoading);
-  const films = useAppSelector((state) => state.films);
+  const isFilmsDataLoading = useAppSelector((state) => state.films.isLoading);
+  const films = useAppSelector((state) => state.films.data);
 
   if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
     return (
@@ -37,7 +34,7 @@ function App({headerFilm}: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage headerFilm={headerFilm} />}
+          element={<MainPage promoFilm={promoFilm} />}
         />
         <Route
           path={AppRoute.Login}

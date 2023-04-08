@@ -18,4 +18,10 @@ export type Film = {
   isFavorite: boolean;
 }
 
+export type PromoFilm = {
+  title: string;
+  genre: string;
+  year: number;
+}
+
 export type Films = Film[];

@@ -30,9 +30,9 @@ export const fetchReviewsAction = createAsyncThunk<void, number, {
   extra: AxiosInstance;
 }>(
   'data/fetchReviews',
-  async (filmId: number, {dispatch, extra: api}) => {
+  async (filmId, {dispatch, extra: api}) => {
     dispatch(setReviewsDataLoadingStatus(true));
-    const {data} = await api.get<Reviews>(`${APIRoute.Reviews as string}/${filmId}`);
+    const {data} = await api.get<Reviews>(`${APIRoute.Reviews}/${filmId}`);
     dispatch(setReviewsDataLoadingStatus(false));
     dispatch(loadReviews(data));
   },

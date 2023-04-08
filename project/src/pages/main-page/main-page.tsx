@@ -1,4 +1,5 @@
 import React from 'react';
+import { PromoFilm } from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import GenreFiltersList from '../../components/genre-filters-list/genre-filters-list';
@@ -6,15 +7,11 @@ import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 
 export type MainPageProps = {
-  headerFilm: {
-    title: string;
-    genre: string;
-    year: number;
-  };
+  promoFilm: PromoFilm;
 }
 
 
-function MainPage({headerFilm}: MainPageProps): JSX.Element {
+function MainPage({promoFilm}: MainPageProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
@@ -36,10 +33,10 @@ function MainPage({headerFilm}: MainPageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{headerFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm.title}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{headerFilm.genre}</span>
-                <span className="film-card__year">{headerFilm.year}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.year}</span>
               </p>
 
               <div className="film-card__buttons">

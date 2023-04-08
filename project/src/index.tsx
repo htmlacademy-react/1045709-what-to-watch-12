@@ -18,7 +18,7 @@ root.render(
   <React.StrictMode>
     <Provider store = {store}>
       <ToastContainer />
-      <App headerFilm={{ title: 'The Grand Budapest Hotel', genre: 'Drama', year: 2014 }} />
+      <App promoFilm={{ title: 'The Grand Budapest Hotel', genre: 'Drama', year: 2014 }} />
     </Provider>
   </React.StrictMode>
 );
