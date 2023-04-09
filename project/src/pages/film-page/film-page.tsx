@@ -3,8 +3,10 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
 import { fetchReviewsAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Films } from '../../types/film';
+import { AuthorizationStatus } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
@@ -18,6 +20,7 @@ type AddReviewPageProps = {
 
 function FilmPage({films}: AddReviewPageProps): JSX.Element {
   const filmInPage = useGetFilmInPage(films);
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
 
   useEffect(() => {
     if (filmInPage) {
@@ -67,7 +70,12 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">{films.length}</span>
                 </button>
-                <Link to={`/films/${filmInPage.id}/review`} className="btn film-card__button">Add review</Link>
+                {
+                  authorizationStatus === AuthorizationStatus.Auth
+                  &&
+                  <Link to={`/films/${filmInPage.id}/review`} className="btn film-card__button">Add review</Link>
+                }
+
               </div>
             </div>
           </div>

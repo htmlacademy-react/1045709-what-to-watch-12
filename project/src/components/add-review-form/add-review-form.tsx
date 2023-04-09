@@ -43,7 +43,7 @@ function AddReviewForm({filmInReview}: AddReviewFormProps): JSX.Element {
 
   return (
     <form action="#" className="add-review__form" onSubmit={formSubmitHandler}>
-      <fieldset style={{border: 'none'}} disabled={isReviewsDataPosting && true}>
+      <fieldset style={{border: 'none'}} disabled={isReviewsDataPosting}>
         <div className="">
           <div className="rating__stars">
             <input onChange={fieldChangeHandle} className="rating__input" id="star-10" type="radio" name="rating" value="10" />
@@ -81,7 +81,7 @@ function AddReviewForm({filmInReview}: AddReviewFormProps): JSX.Element {
         <div className="add-review__text">
           <textarea onChange={fieldChangeHandle} className="add-review__textarea" name="text" id="review-text" placeholder="Review text"></textarea>
           <div className="add-review__submit">
-            <button className="add-review__btn" type="submit" disabled={!isValid && true}>Post</button>
+            <button className="add-review__btn" type="submit" disabled={!isValid}>Post</button>
           </div>
 
         </div>
