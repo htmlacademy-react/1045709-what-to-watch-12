@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { AppRoute } from '../../const';
-import LoadingScreen from '../../pages/loading-screen/loading-screent';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import UserFilmListPage from '../../pages/user-film-list-page/user-film-list-page';

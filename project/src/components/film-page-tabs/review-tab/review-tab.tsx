@@ -4,7 +4,7 @@ import { getReviewsDataLoadingStatus } from '../../../store/reviews-data/selecto
 import { getReviews } from '../../../store/reviews-data/selectors';
 import { useAppSelector } from '../../../hooks';
 import { Film } from '../../../types/film';
-import LoadingScreen from '../../../pages/loading-screen/loading-screent';
+import LoadingScreen from '../../../pages/loading-screen/loading-screen';
 
 type ReviewTabProps = {
   film: Film;

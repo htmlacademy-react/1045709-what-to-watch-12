@@ -14,7 +14,7 @@ import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
 import MoreLikeFilms from '../../components/more-like-films/more-like-films';
-import LoadingScreen from '../loading-screen/loading-screent';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Footer from '../../components/footer/footer';
 
 type AddReviewPageProps = {
