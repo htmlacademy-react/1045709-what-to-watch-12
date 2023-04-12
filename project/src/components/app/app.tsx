@@ -13,16 +13,17 @@ import PrivateRoute from '../private-route/private-route';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
 import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-process/selectors';
-import { getFilmsDataLoadingStatus } from '../../store/films-data/selectors';
+import { getFilmsDataLoadingStatus, getPromoFilmDataLoadingStatus } from '../../store/films-data/selectors';
 import { getFilms } from '../../store/films-data/selectors';
 
 function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
   const isFilmsDataLoading = useAppSelector(getFilmsDataLoadingStatus);
+  const isPromoFilmDataLoading = useAppSelector(getPromoFilmDataLoadingStatus);
   const films = useAppSelector(getFilms);
 
-  if (!isAuthChecked || isFilmsDataLoading) {
+  if (!isAuthChecked || isFilmsDataLoading || isPromoFilmDataLoading) {
     return (
       <LoadingScreen />
     );

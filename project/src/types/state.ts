@@ -8,6 +8,7 @@ export type FilmData = {
   filteredFilms: Films;
   promoFilm: Film | null;
   isFilmsLoading: boolean;
+  isPromoFilmLoading: boolean;
 };
 
 export type FilmList = {

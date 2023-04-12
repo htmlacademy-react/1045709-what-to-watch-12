@@ -9,6 +9,7 @@ const initialState: FilmData = {
   filteredFilms: [],
   promoFilm: null,
   isFilmsLoading: false,
+  isPromoFilmLoading: false,
 };
 
 export const filmsData = createSlice({
@@ -33,8 +34,12 @@ export const filmsData = createSlice({
         state.filteredFilms = action.payload;
         state.isFilmsLoading = false;
       })
+      .addCase(fetchPromoFilmAction.pending, (state) => {
+        state.isPromoFilmLoading = true;
+      })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
+        state.isPromoFilmLoading = false;
       });
   }
 });

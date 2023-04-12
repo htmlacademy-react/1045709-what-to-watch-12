@@ -6,3 +6,4 @@ export const getFilms = (state: State): Films => state[NameSpace.FilmsData].film
 export const getFilteredFilms = (state: State): Films => state[NameSpace.FilmsData].filteredFilms;
 export const getPromoFilm = (state: State): Film => state[NameSpace.FilmsData].promoFilm as Film;
 export const getFilmsDataLoadingStatus = (state: State): boolean => state[NameSpace.FilmsData].isFilmsLoading;
+export const getPromoFilmDataLoadingStatus = (state: State): boolean => state[NameSpace.FilmsData].isPromoFilmLoading;
