@@ -1,13 +1,15 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { renderMoreFilms, resetRenderedFilms } from '../../store/action';
+import { getFilteredFilms } from '../../store/films-data/selectors';
+import { getRenderedFilmsQuantity } from '../../store/film-list/selectors';
+import { resetRenderedFilms, renderMoreFilms } from '../../store/film-list/film-list';
 import { useAppSelector, useAppDispatch } from '../../hooks';
 import FilmCard from '../film-card/film-card';
 import ShowMoreBtn from '../show-more-btn/show-more-btn';
 
 function FilmList(): JSX.Element {
-  const films = useAppSelector((state) => state.films.filteredData);
-  const renderedFilmsQuantity = useAppSelector((state) => state.renderedFilmsQuantity);
+  const films = useAppSelector(getFilteredFilms);
+  const renderedFilmsQuantity = useAppSelector(getRenderedFilmsQuantity);
   const dispatch = useAppDispatch();
 
   useEffect(() => () => {

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getReviewsDataLoadingStatus } from '../../../store/reviews-data/selectors';
+import { getReviews } from '../../../store/reviews-data/selectors';
 import { useAppSelector } from '../../../hooks';
 import { Film } from '../../../types/film';
 import LoadingScreen from '../../../pages/loading-screen/loading-screent';
@@ -9,8 +11,8 @@ type ReviewTabProps = {
 }
 
 function ReviewTab({film}: ReviewTabProps): JSX.Element {
-  const isReviewsDataLoading = useAppSelector((state) => state.reviews.isLoading);
-  const reviews = useAppSelector((state) => state.reviews.data);
+  const isReviewsDataLoading = useAppSelector(getReviewsDataLoadingStatus);
+  const reviews = useAppSelector(getReviews);
 
   return (
     <React.Fragment>

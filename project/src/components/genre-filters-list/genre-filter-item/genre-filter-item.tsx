@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../hooks';
+import { getActiveGenre } from '../../../store/film-list/selectors';
 
 type GenreFilterItemProps = {
   filter: {
@@ -10,7 +11,7 @@ type GenreFilterItemProps = {
 }
 
 function GenreFilterItem({filter, onClick}: GenreFilterItemProps): JSX.Element {
-  const activeGenre = useAppSelector((state) => state.films.activeGenre);
+  const activeGenre = useAppSelector(getActiveGenre);
   return (
     <li onClick={onClick} className={`catalog__genres-item ${activeGenre === filter.filterValue ? 'catalog__genres-item--active' : ''}`}>
       <Link to="#" className="catalog__genres-link">{filter.filterName}</Link>

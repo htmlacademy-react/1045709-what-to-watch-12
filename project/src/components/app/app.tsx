@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { AppRoute } from '../../const';
 import { PromoFilm } from '../../types/film';
 import LoadingScreen from '../../pages/loading-screen/loading-screent';
 import MainPage from '../../pages/main-page/main-page';
@@ -13,17 +13,21 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-process/selectors';
+import { getFilmsDataLoadingStatus } from '../../store/films-data/selectors';
+import { getFilms } from '../../store/films-data/selectors';
 
 export type AppProps = {
   promoFilm: PromoFilm;
 }
 
 function App({promoFilm}: AppProps): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isFilmsDataLoading = useAppSelector((state) => state.films.isLoading);
-  const films = useAppSelector((state) => state.films.data);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const isFilmsDataLoading = useAppSelector(getFilmsDataLoadingStatus);
+  const films = useAppSelector(getFilms);
 
-  if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
+  if (!isAuthChecked || isFilmsDataLoading) {
     return (
       <LoadingScreen />
     );

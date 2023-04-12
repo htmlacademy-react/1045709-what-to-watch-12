@@ -21,6 +21,13 @@ export enum APIRoute {
   Logout = '/logout',
 }
 
+export enum NameSpace {
+  FilmsData = 'FILMS_DATA',
+  ReviewsData = 'REVIEWS_DATA',
+  FilmList = 'FILM_LIST',
+  User = 'USER',
+}
+
 export const FiltersByGenre = {
   ALL_GENRES: {
     filterName: 'All genres',

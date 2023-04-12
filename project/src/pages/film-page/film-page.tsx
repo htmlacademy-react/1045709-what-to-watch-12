@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
 import { fetchReviewsAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { useAppSelector } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Films } from '../../types/film';
@@ -20,7 +21,7 @@ type AddReviewPageProps = {
 
 function FilmPage({films}: AddReviewPageProps): JSX.Element {
   const filmInPage = useGetFilmInPage(films);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     if (filmInPage) {
