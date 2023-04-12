@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { FilmData } from '../../types/state';
-import { fetchFilmAction } from '../api-actions';
+import { fetchFilmAction, fetchPromoFilmAction } from '../api-actions';
 import { FiltersByGenre } from '../../const';
 
 const initialState: FilmData = {
   films: [],
   filteredFilms: [],
+  promoFilm: null,
   isFilmsLoading: false,
 };
 
@@ -31,6 +32,9 @@ export const filmsData = createSlice({
         state.films = action.payload;
         state.filteredFilms = action.payload;
         state.isFilmsLoading = false;
+      })
+      .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
+        state.promoFilm = action.payload;
       });
   }
 });

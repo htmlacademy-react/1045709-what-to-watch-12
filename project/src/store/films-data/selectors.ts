@@ -1,7 +1,8 @@
 import { NameSpace } from '../../const';
 import { State } from '../../types/state';
-import { Films } from '../../types/film';
+import { Film, Films } from '../../types/film';
 
 export const getFilms = (state: State): Films => state[NameSpace.FilmsData].films;
 export const getFilteredFilms = (state: State): Films => state[NameSpace.FilmsData].filteredFilms;
+export const getPromoFilm = (state: State): Film => state[NameSpace.FilmsData].promoFilm as Film;
 export const getFilmsDataLoadingStatus = (state: State): boolean => state[NameSpace.FilmsData].isFilmsLoading;

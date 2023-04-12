@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { AppRoute } from '../../const';
-import { PromoFilm } from '../../types/film';
 import LoadingScreen from '../../pages/loading-screen/loading-screent';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
@@ -17,11 +16,7 @@ import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-p
 import { getFilmsDataLoadingStatus } from '../../store/films-data/selectors';
 import { getFilms } from '../../store/films-data/selectors';
 
-export type AppProps = {
-  promoFilm: PromoFilm;
-}
-
-function App({promoFilm}: AppProps): JSX.Element {
+function App(): JSX.Element {
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isAuthChecked = useAppSelector(getAuthCheckedStatus);
   const isFilmsDataLoading = useAppSelector(getFilmsDataLoadingStatus);
@@ -38,7 +33,7 @@ function App({promoFilm}: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage promoFilm={promoFilm} />}
+          element={<MainPage />}
         />
         <Route
           path={AppRoute.Login}
