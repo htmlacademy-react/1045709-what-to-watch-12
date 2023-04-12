@@ -1,14 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace } from '../../const';
 import { FilmData } from '../../types/state';
-import { fetchFilmAction, fetchPromoFilmAction } from '../api-actions';
+import { fetchFilmAction, fetchSimilarFilmAction, fetchPromoFilmAction } from '../api-actions';
 import { FiltersByGenre } from '../../const';
 
 const initialState: FilmData = {
   films: [],
   filteredFilms: [],
+  similarFilms: [],
   promoFilm: null,
   isFilmsLoading: false,
+  isSimilarFilmsLoading: false,
   isPromoFilmLoading: false,
 };
 
@@ -33,6 +35,13 @@ export const filmsData = createSlice({
         state.films = action.payload;
         state.filteredFilms = action.payload;
         state.isFilmsLoading = false;
+      })
+      .addCase(fetchSimilarFilmAction.pending, (state) => {
+        state.isSimilarFilmsLoading = true;
+      })
+      .addCase(fetchSimilarFilmAction.fulfilled, (state, action) => {
+        state.similarFilms = action.payload;
+        state.isSimilarFilmsLoading = false;
       })
       .addCase(fetchPromoFilmAction.pending, (state) => {
         state.isPromoFilmLoading = true;

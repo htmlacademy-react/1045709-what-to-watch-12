@@ -6,8 +6,10 @@ import { AuthorizationStatus } from '../const.js';
 export type FilmData = {
   films: Films;
   filteredFilms: Films;
+  similarFilms: Films;
   promoFilm: Film | null;
   isFilmsLoading: boolean;
+  isSimilarFilmsLoading: boolean;
   isPromoFilmLoading: boolean;
 };
 

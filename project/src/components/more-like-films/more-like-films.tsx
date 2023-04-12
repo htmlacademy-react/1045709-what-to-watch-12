@@ -1,22 +1,18 @@
-import { Film } from '../../types/film';
+import { useAppSelector } from '../../hooks';
+import { getSimilarFilms } from '../../store/films-data/selectors';
 import FilmCard from '../film-card/film-card';
 
 const MORE_LIKE_FILMS_QUANTITY = 4;
 
-type MoreLikeFilmsProps = {
-  films: Film[];
-  filmInPage: Film;
-}
-
-function MoreLikeFilms({films, filmInPage}: MoreLikeFilmsProps): JSX.Element {
-  const moreLikeFilms = films.filter((film) => film.genre === filmInPage.genre && film.id !== filmInPage.id).slice(0, MORE_LIKE_FILMS_QUANTITY);
+function MoreLikeFilms(): JSX.Element {
+  const moreLikeFilms = useAppSelector(getSimilarFilms);
 
   return (
     <section className="catalog catalog--like-this">
       <h2 className="catalog__title">More like this</h2>
 
       <div className="catalog__films-list">
-        {moreLikeFilms.map((film) =>
+        {moreLikeFilms.slice(0, MORE_LIKE_FILMS_QUANTITY).map((film) =>
           (
             <FilmCard key={film.id} film={film}/>
           )
