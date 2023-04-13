@@ -16,9 +16,18 @@ export enum AuthorizationStatus {
 
 export enum APIRoute {
   Films = '/films',
+  SimilarFilms = 'similar',
+  PromoFilm = '/promo',
   Reviews = '/comments',
   Login = '/login',
   Logout = '/logout',
+}
+
+export enum NameSpace {
+  FilmsData = 'FILMS_DATA',
+  ReviewsData = 'REVIEWS_DATA',
+  FilmList = 'FILM_LIST',
+  User = 'USER',
 }
 
 export const FiltersByGenre = {

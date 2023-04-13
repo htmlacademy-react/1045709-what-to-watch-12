@@ -2,7 +2,9 @@ import React from 'react';
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
-import { fetchReviewsAction } from '../../store/api-actions';
+import { fetchSimilarFilmAction, fetchReviewsAction } from '../../store/api-actions';
+import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { getSimilarFilmsDataLoadingStatus } from '../../store/films-data/selectors';
 import { useAppSelector } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Films } from '../../types/film';
@@ -12,6 +14,7 @@ import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
 import MoreLikeFilms from '../../components/more-like-films/more-like-films';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Footer from '../../components/footer/footer';
 
 type AddReviewPageProps = {
@@ -20,10 +23,12 @@ type AddReviewPageProps = {
 
 function FilmPage({films}: AddReviewPageProps): JSX.Element {
   const filmInPage = useGetFilmInPage(films);
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isSimilarFilmsLoading = useAppSelector(getSimilarFilmsDataLoadingStatus);
 
   useEffect(() => {
     if (filmInPage) {
+      store.dispatch(fetchSimilarFilmAction(filmInPage.id));
       store.dispatch(fetchReviewsAction(filmInPage.id));
     }
   }, [filmInPage]);
@@ -95,7 +100,13 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
       </section>
 
       <div className="page-content">
-        <MoreLikeFilms films={films} filmInPage={filmInPage} />
+        {
+          isSimilarFilmsLoading
+            ?
+            <LoadingScreen />
+            :
+            <MoreLikeFilms />
+        }
         < Footer />
       </div>
     </React.Fragment>

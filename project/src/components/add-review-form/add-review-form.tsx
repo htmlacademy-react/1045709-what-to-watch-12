@@ -2,6 +2,7 @@ import { FormEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postReviewAction } from '../../store/api-actions';
 import { Film } from '../../types/film';
+import { getReviewDataPostingStatus } from '../../store/reviews-data/selectors';
 
 const REVIEW_TEXT_MIN_LENGTH = 50;
 const REVIEW_TEXT_MAX_LENGTH = 400;
@@ -16,7 +17,7 @@ type ChangeEvent = {
 
 function AddReviewForm({filmInReview}: AddReviewFormProps): JSX.Element {
   const dispatch = useAppDispatch();
-  const isReviewsDataPosting = useAppSelector((state) => state.reviews.isPosting);
+  const isReviewsDataPosting = useAppSelector(getReviewDataPostingStatus);
 
   const [formData, setFormData] = useState({
     rating: 0,

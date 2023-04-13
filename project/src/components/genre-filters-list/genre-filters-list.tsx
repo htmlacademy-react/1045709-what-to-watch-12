@@ -1,7 +1,8 @@
 import { useAppDispatch } from '../../hooks';
 import { FiltersByGenre } from '../../const';
+import { changeGenre } from '../../store/film-list/film-list';
 import GenreFilterItem from './genre-filter-item/genre-filter-item';
-import { changeGenreAction, filterFilmsByGenreAction } from '../../store/action';
+import { filterFilmsByGenre } from '../../store/films-data/films-data';
 
 function GenreFiltersList(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -10,8 +11,8 @@ function GenreFiltersList(): JSX.Element {
       {Object.values(FiltersByGenre).map((filter) => (
         <GenreFilterItem key={filter.filterName} filter={filter}
           onClick={() => {
-            dispatch(changeGenreAction(filter.filterValue));
-            dispatch(filterFilmsByGenreAction(filter.filterValue));
+            dispatch(changeGenre(filter.filterValue));
+            dispatch(filterFilmsByGenre(filter.filterValue));
           }}
         />
       ))}

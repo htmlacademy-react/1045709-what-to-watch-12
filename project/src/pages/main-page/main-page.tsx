@@ -1,17 +1,15 @@
 import React from 'react';
-import { PromoFilm } from '../../types/film';
+import { useAppSelector } from '../../hooks';
+import { getPromoFilm } from '../../store/films-data/selectors';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import GenreFiltersList from '../../components/genre-filters-list/genre-filters-list';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
 
-export type MainPageProps = {
-  promoFilm: PromoFilm;
-}
+function MainPage(): JSX.Element {
+  const promoFilm = useAppSelector(getPromoFilm);
 
-
-function MainPage({promoFilm}: MainPageProps): JSX.Element {
   return (
     <React.Fragment>
       <section className="film-card">
@@ -33,10 +31,10 @@ function MainPage({promoFilm}: MainPageProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.title}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
                 <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.year}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">

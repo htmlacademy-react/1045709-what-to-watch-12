@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { PromoFilm } from '../../types/film';
-import LoadingScreen from '../../pages/loading-screen/loading-screent';
+import { AppRoute } from '../../const';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
 import UserFilmListPage from '../../pages/user-film-list-page/user-film-list-page';
@@ -13,17 +12,18 @@ import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import PrivateRoute from '../private-route/private-route';
 import HistoryRouter from '../history-route/history-route';
 import browserHistory from '../../browser-history';
+import { getAuthorizationStatus, getAuthCheckedStatus } from '../../store/user-process/selectors';
+import { getFilmsDataLoadingStatus, getPromoFilmDataLoadingStatus } from '../../store/films-data/selectors';
+import { getFilms } from '../../store/films-data/selectors';
 
-export type AppProps = {
-  promoFilm: PromoFilm;
-}
+function App(): JSX.Element {
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isAuthChecked = useAppSelector(getAuthCheckedStatus);
+  const isFilmsDataLoading = useAppSelector(getFilmsDataLoadingStatus);
+  const isPromoFilmDataLoading = useAppSelector(getPromoFilmDataLoadingStatus);
+  const films = useAppSelector(getFilms);
 
-function App({promoFilm}: AppProps): JSX.Element {
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
-  const isFilmsDataLoading = useAppSelector((state) => state.films.isLoading);
-  const films = useAppSelector((state) => state.films.data);
-
-  if (authorizationStatus === AuthorizationStatus.Unknown || isFilmsDataLoading) {
+  if (!isAuthChecked || isFilmsDataLoading || isPromoFilmDataLoading) {
     return (
       <LoadingScreen />
     );
@@ -34,7 +34,7 @@ function App({promoFilm}: AppProps): JSX.Element {
       <Routes>
         <Route
           path={AppRoute.Root}
-          element={<MainPage promoFilm={promoFilm} />}
+          element={<MainPage />}
         />
         <Route
           path={AppRoute.Login}
