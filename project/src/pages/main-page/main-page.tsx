@@ -1,5 +1,6 @@
 import React from 'react';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
+import { redirectToRoute } from '../../store/action';
 import { getPromoFilm } from '../../store/films-data/selectors';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
@@ -9,6 +10,8 @@ import Footer from '../../components/footer/footer';
 
 function MainPage(): JSX.Element {
   const promoFilm = useAppSelector(getPromoFilm);
+
+  const dispatch = useAppDispatch();
 
   return (
     <React.Fragment>
@@ -27,7 +30,7 @@ function MainPage(): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={promoFilm.posterImage} alt={promoFilm.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
@@ -38,7 +41,11 @@ function MainPage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  onClick={() => dispatch(redirectToRoute(`/player/${promoFilm.id}`))}
+                  className="btn btn--play film-card__button"
+                  type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>

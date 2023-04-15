@@ -3,9 +3,10 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { store } from '../../store';
 import { fetchSimilarFilmAction, fetchReviewsAction } from '../../store/api-actions';
+import { redirectToRoute } from '../../store/action';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { getSimilarFilmsDataLoadingStatus } from '../../store/films-data/selectors';
-import { useAppSelector } from '../../hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { Films } from '../../types/film';
 import { AuthorizationStatus } from '../../const';
@@ -25,6 +26,8 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
   const filmInPage = useGetFilmInPage(films);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isSimilarFilmsLoading = useAppSelector(getSimilarFilmsDataLoadingStatus);
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (filmInPage) {
@@ -62,7 +65,11 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
+                <button
+                  onClick={() => dispatch(redirectToRoute(`/player/${filmInPage.id}`))}
+                  className="btn btn--play film-card__button"
+                  type="button"
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>

@@ -62,7 +62,7 @@ function App(): JSX.Element {
         />
         <Route
           path={AppRoute.VideoPlayer}
-          element={<VideoPlayerPage films={films} />}
+          element={<VideoPlayerPage />}
         />
         <Route
           path="*"
