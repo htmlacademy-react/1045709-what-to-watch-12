@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
-import { useAppSelector } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { AppRoute } from '../../const';
 import NotFoundPage from '../../pages/not-found-page/not-found-page';
 import LoadingSpinner from './loading-spinner/loading-spinner';
 import PlayBtn from './control-btn/play-btn';
 import PauseBtn from './control-btn/pause-btn';
-import { getFilms } from '../../store/films-data/selectors';
 
 const formatRemainingTime = (time: number) => {
   if (time < 3600) {
@@ -21,8 +19,7 @@ const formatRemainingTime = (time: number) => {
 
 function VideoPlayer(): JSX.Element {
   const navigate = useNavigate();
-  const films = useAppSelector(getFilms);
-  const filmInVideo = useGetFilmInPage(films);
+  const filmInVideo = useGetFilmInPage();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);

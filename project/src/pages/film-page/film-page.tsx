@@ -1,33 +1,23 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { store } from '../../store';
 import { fetchSimilarFilmAction, fetchReviewsAction } from '../../store/api-actions';
-import { redirectToRoute } from '../../store/action';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { getSimilarFilmsDataLoadingStatus } from '../../store/films-data/selectors';
-import { useAppSelector, useAppDispatch } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
-import { Films } from '../../types/film';
 import { AuthorizationStatus } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
 import MoreLikeFilms from '../../components/more-like-films/more-like-films';
-import LoadingScreen from '../loading-screen/loading-screen';
 import Footer from '../../components/footer/footer';
 
-type AddReviewPageProps = {
-  films: Films;
-}
-
-function FilmPage({films}: AddReviewPageProps): JSX.Element {
-  const filmInPage = useGetFilmInPage(films);
+function FilmPage(): JSX.Element {
+  const navigate = useNavigate();
+  const filmInPage = useGetFilmInPage();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
-  const isSimilarFilmsLoading = useAppSelector(getSimilarFilmsDataLoadingStatus);
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (filmInPage) {
@@ -46,7 +36,7 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
       <section className="film-card film-card--full">
         <div className="film-card__hero">
           <div className="film-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={filmInPage.backgroundImage} alt={filmInPage.name} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -66,7 +56,7 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
 
               <div className="film-card__buttons">
                 <button
-                  onClick={() => dispatch(redirectToRoute(`/player/${filmInPage.id}`))}
+                  onClick={() => navigate(`/player/${filmInPage.id}`)}
                   className="btn btn--play film-card__button"
                   type="button"
                 >
@@ -80,7 +70,7 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
                     <use xlinkHref="#add"></use>
                   </svg>
                   <span>My list</span>
-                  <span className="film-card__count">{films.length}</span>
+                  <span className="film-card__count">{'MY_LIST_COUNT'}</span>
                 </button>
                 {
                   authorizationStatus === AuthorizationStatus.Auth
@@ -107,14 +97,8 @@ function FilmPage({films}: AddReviewPageProps): JSX.Element {
       </section>
 
       <div className="page-content">
-        {
-          isSimilarFilmsLoading
-            ?
-            <LoadingScreen />
-            :
-            <MoreLikeFilms />
-        }
-        < Footer />
+        <MoreLikeFilms />
+        <Footer />
       </div>
     </React.Fragment>
   );

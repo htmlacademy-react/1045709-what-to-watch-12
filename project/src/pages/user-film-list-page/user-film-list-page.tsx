@@ -1,14 +1,12 @@
+import { useAppSelector } from '../../hooks';
+import { getFilms } from '../../store/films-data/selectors';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FilmList from '../../components/film-list/film-list';
 import Footer from '../../components/footer/footer';
-import { Films } from '../../types/film';
 
-type UserFilmListPageProps = {
-  films: Films;
-}
-
-function UserFilmListPage({films}: UserFilmListPageProps): JSX.Element {
+function UserFilmListPage(): JSX.Element {
+  const films = useAppSelector(getFilms);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
