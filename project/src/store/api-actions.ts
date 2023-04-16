@@ -6,6 +6,7 @@ import { Reviews, AddReview } from '../types/review.js';
 import { redirectToRoute } from './action';
 import { saveToken, dropToken } from '../services/token';
 import { APIRoute, AppRoute } from '../const';
+import { FavoriteData } from '../types/favorite-data.js';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 
@@ -18,6 +19,30 @@ export const fetchFilmAction = createAsyncThunk<Films, undefined, {
   async (_arg, {dispatch, extra: api}) => {
     const {data} = await api.get<Films>(APIRoute.Films);
     return data;
+  },
+);
+
+export const fetchFavoriteFilmAction = createAsyncThunk<Films, undefined, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'data/fetchFavoriteFilms',
+  async (_arg, {dispatch, extra: api}) => {
+    const {data} = await api.get<Films>(APIRoute.FavoriteFilms);
+    return data;
+  },
+);
+
+export const postFavoriteStatusAction = createAsyncThunk<void, FavoriteData, {
+  dispatch: AppDispatch;
+  state: State;
+  extra: AxiosInstance;
+}>(
+  'user/postFavoriteStatus',
+  async ({filmId, status}, {dispatch, extra: api}) => {
+    await api.post<number>(`${APIRoute.FavoriteFilms}/${filmId}/${status}`);
+    dispatch(fetchFavoriteFilmAction());
   },
 );
 

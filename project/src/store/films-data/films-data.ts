@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import { NameSpace } from '../../const';
 import { FilmData } from '../../types/state';
-import { fetchFilmAction, fetchSimilarFilmAction, fetchPromoFilmAction } from '../api-actions';
+import { fetchFilmAction, fetchFavoriteFilmAction, postFavoriteStatusAction, fetchSimilarFilmAction, fetchPromoFilmAction } from '../api-actions';
 import { FiltersByGenre } from '../../const';
 
 const initialState: FilmData = {
@@ -9,6 +10,11 @@ const initialState: FilmData = {
     data: [],
     filteredData: [],
     isLoading: false,
+  },
+  favoriteFilms: {
+    data: [],
+    isLoading: false,
+    isUpdating: false,
   },
   similarFilms: {
     data: [],
@@ -41,6 +47,23 @@ export const filmsData = createSlice({
         state.films.data = action.payload;
         state.films.filteredData = action.payload;
         state.films.isLoading = false;
+      })
+      .addCase(fetchFavoriteFilmAction.pending, (state) => {
+        state.favoriteFilms.isLoading = true;
+      })
+      .addCase(fetchFavoriteFilmAction.fulfilled, (state, action) => {
+        state.favoriteFilms.data = action.payload;
+        state.favoriteFilms.isLoading = false;
+      })
+      .addCase(postFavoriteStatusAction.pending, (state) => {
+        state.favoriteFilms.isUpdating = true;
+      })
+      .addCase(postFavoriteStatusAction.fulfilled, (state) => {
+        state.favoriteFilms.isUpdating = false;
+      })
+      .addCase(postFavoriteStatusAction.rejected, (state, action) => {
+        state.favoriteFilms.isUpdating = false;
+        toast.error(action.error.message);
       })
       .addCase(fetchSimilarFilmAction.pending, (state) => {
         state.similarFilms.isLoading = true;

@@ -9,6 +9,11 @@ export type FilmData = {
     filteredData: Films;
     isLoading: boolean;
   };
+  favoriteFilms: {
+    data: Films;
+    isLoading: boolean;
+    isUpdating: boolean;
+  };
   similarFilms: {
     data: Films;
     isLoading: boolean;

@@ -10,6 +10,7 @@ import { AuthorizationStatus } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
+import MyListBtn from '../../components/myListBtn/myListBtn';
 import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
 import MoreLikeFilms from '../../components/more-like-films/more-like-films';
 import Footer from '../../components/footer/footer';
@@ -65,13 +66,7 @@ function FilmPage(): JSX.Element {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">{'MY_LIST_COUNT'}</span>
-                </button>
+                <MyListBtn filmId={filmInPage.id} />
                 {
                   authorizationStatus === AuthorizationStatus.Auth
                   &&
