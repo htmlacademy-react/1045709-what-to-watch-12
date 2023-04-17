@@ -1,17 +1,12 @@
 import { Link } from 'react-router-dom';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
-import { Films } from '../../types/film';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import AddReviewForm from '../../components/add-review-form/add-review-form';
 
-type AddReviewPageProps = {
-  films: Films;
-}
-
-function AddReviewPage({films}: AddReviewPageProps): JSX.Element {
-  const filmInReview = useGetFilmInPage(films);
+function AddReviewPage(): JSX.Element {
+  const filmInReview = useGetFilmInPage();
 
   if (!filmInReview) {
     return <NotFoundPage />;

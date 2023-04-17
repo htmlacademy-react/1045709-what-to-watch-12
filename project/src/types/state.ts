@@ -4,13 +4,24 @@ import { Reviews } from './review.js';
 import { AuthorizationStatus } from '../const.js';
 
 export type FilmData = {
-  films: Films;
-  filteredFilms: Films;
-  similarFilms: Films;
-  promoFilm: Film | null;
-  isFilmsLoading: boolean;
-  isSimilarFilmsLoading: boolean;
-  isPromoFilmLoading: boolean;
+  films: {
+    data: Films;
+    filteredData: Films;
+    isLoading: boolean;
+  };
+  favoriteFilms: {
+    data: Films;
+    isLoading: boolean;
+    isUpdating: boolean;
+  };
+  similarFilms: {
+    data: Films;
+    isLoading: boolean;
+  };
+  promoFilm: {
+    data: Film | null;
+    isLoading: boolean;
+  };
 };
 
 export type FilmList = {
