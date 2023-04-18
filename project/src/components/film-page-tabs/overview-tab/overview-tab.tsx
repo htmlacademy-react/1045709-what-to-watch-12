@@ -1,6 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { RatingValues } from '../../../const';
 import { Film } from '../../../types/film';
+
+function getTextFilmRating(rating: number) {
+  if (rating < RatingValues.NORMAL.startValue) {
+    return RatingValues.BAD.text;
+  }
+  if (rating < RatingValues.GOOD.startValue) {
+    return RatingValues.NORMAL.text;
+  }
+  if (rating < RatingValues.VERY_GOOD.startValue) {
+    return RatingValues.GOOD.text;
+  }
+  if (rating < RatingValues.AWESOME.startValue) {
+    return RatingValues.VERY_GOOD.text;
+  }
+  if (rating === RatingValues.AWESOME.startValue) {
+    return RatingValues.AWESOME.text;
+  }
+}
 
 type OverviewTabProps = {
   film: Film;
@@ -25,7 +44,7 @@ function OverviewTab({film}: OverviewTabProps): JSX.Element {
       <div className="film-rating">
         <div className="film-rating__score">{film.rating}</div>
         <p className="film-rating__meta">
-          <span className="film-rating__level">Very good</span>
+          <span className="film-rating__level">{getTextFilmRating(film.rating)}</span>
           <span className="film-rating__count">{film.scoresCount} ratings</span>
         </p>
       </div>

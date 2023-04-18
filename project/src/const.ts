@@ -74,6 +74,29 @@ export const FiltersByGenre = {
   },
 } as const;
 
+export const RatingValues = {
+  BAD: {
+    startValue: 0,
+    text: 'Bad'
+  },
+  NORMAL: {
+    startValue: 3,
+    text: 'Normal'
+  },
+  GOOD: {
+    startValue: 5,
+    text: 'Good'
+  },
+  VERY_GOOD: {
+    startValue: 8,
+    text: 'Very good'
+  },
+  AWESOME: {
+    startValue: 10,
+    text: 'Awesome'
+  }
+} as const;
+
 export const DEFAULT_RENDERED_FILMS_QUANTITY = 8;
 export const FILMS_TO_RENDER_QUANTITY = 8;
 
