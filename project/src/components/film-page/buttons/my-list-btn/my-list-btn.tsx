@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthorizationStatus, AppRoute } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFavoriteFilmAction, postFavoriteStatusAction } from '../../store/api-actions';
-import { getFavoriteFilms, getFavoriteFilmsDataLoadingStatus, getFavoriteDataPostingStatus } from '../../store/films-data/selectors';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
+import { AuthorizationStatus, AppRoute } from '../../../../const';
+import { useAppDispatch, useAppSelector } from '../../../../hooks';
+import { fetchFavoriteFilmAction, postFavoriteStatusAction } from '../../../../store/api-actions';
+import { getFavoriteFilms, getFavoriteFilmsDataLoadingStatus, getFavoriteDataPostingStatus } from '../../../../store/films-data/selectors';
+import { getAuthorizationStatus } from '../../../../store/user-process/selectors';
 
 function MyListBtn({filmId}: {filmId: number}): JSX.Element {
   const dispatch = useAppDispatch();

@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { logoutAction } from '../../store/api-actions';
-import { AuthorizationStatus, AppRoute } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { getAuthorizationStatus } from '../../../store/user-process/selectors';
+import { logoutAction } from '../../../store/api-actions';
+import { AuthorizationStatus, AppRoute } from '../../../const';
 
 function UserBlock(): JSX.Element {
   const dispatch = useAppDispatch();

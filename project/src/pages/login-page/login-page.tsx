@@ -2,8 +2,8 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { AuthorizationStatus, AppRoute } from '../../const';
-import Logo from '../../components/logo/logo';
-import LoginForm from '../../components/login-form/login-form';
+import Logo from '../../components/header/logo/logo';
+import LoginForm from '../../components/forms/login-form/login-form';
 import Footer from '../../components/footer/footer';
 
 function LoginPage(): JSX.Element {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Film } from '../../../types/film';
+import { Film } from '../../../../types/film';
 
 type DetailsTabProps = {
   film: Film;

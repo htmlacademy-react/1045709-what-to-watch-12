@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RatingValues } from '../../../const';
-import { Film } from '../../../types/film';
+import { RatingValues } from '../../../../const';
+import { Film } from '../../../../types/film';
 
 function getTextFilmRating(rating: number) {
   if (rating < RatingValues.NORMAL.startValue) {

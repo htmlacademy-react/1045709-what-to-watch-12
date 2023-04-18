@@ -1,8 +1,8 @@
 import { FormEvent, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { postReviewAction } from '../../store/api-actions';
-import { Film } from '../../types/film';
-import { getReviewDataPostingStatus } from '../../store/reviews-data/selectors';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { postReviewAction } from '../../../store/api-actions';
+import { Film } from '../../../types/film';
+import { getReviewDataPostingStatus } from '../../../store/reviews-data/selectors';
 
 const REVIEW_TEXT_MIN_LENGTH = 50;
 const REVIEW_TEXT_MAX_LENGTH = 400;

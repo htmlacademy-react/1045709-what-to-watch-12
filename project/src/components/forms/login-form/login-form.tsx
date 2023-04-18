@@ -1,7 +1,7 @@
 import { useRef, useState, FormEvent } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { loginAction } from '../../store/api-actions';
-import { AuthData } from '../../types/auth-data';
+import { useAppDispatch } from '../../../hooks';
+import { loginAction } from '../../../store/api-actions';
+import { AuthData } from '../../../types/auth-data';
 
 const EMAIL_ERROR_MESSAGE = 'Email must be a valid email';
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

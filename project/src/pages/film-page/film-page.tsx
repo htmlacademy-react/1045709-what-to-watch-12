@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { store } from '../../store';
 import { fetchSimilarFilmAction, fetchReviewsAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
@@ -8,15 +7,15 @@ import { useAppSelector } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { AuthorizationStatus } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';
-import Logo from '../../components/logo/logo';
-import UserBlock from '../../components/user-block/user-block';
-import MyListBtn from '../../components/myListBtn/myListBtn';
-import FilmPageTabs from '../../components/film-page-tabs/film-page-tabs';
-import MoreLikeFilms from '../../components/more-like-films/more-like-films';
+import Header from '../../components/header/header';
+import PlayBtn from '../../components/film-page/buttons/play-btn/play-btn';
+import AddReviewBtn from '../../components/film-page/buttons/add-review-btn/add-review-btn';
+import MyListBtn from '../../components/film-page/buttons/my-list-btn/my-list-btn';
+import Tabs from '../../components/film-page/tabs/tabs';
+import SimilarFilmList from '../../components/film-lists/similar-film-list.tsx/similar-film-list';
 import Footer from '../../components/footer/footer';
 
 function FilmPage(): JSX.Element {
-  const navigate = useNavigate();
   const filmInPage = useGetFilmInPage();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
@@ -36,16 +35,8 @@ function FilmPage(): JSX.Element {
     <React.Fragment>
       <section className="film-card film-card--full">
         <div className="film-card__hero">
-          <div className="film-card__bg">
-            <img src={filmInPage.backgroundImage} alt={filmInPage.name} />
-          </div>
 
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header film-card__head">
-            < Logo />
-            < UserBlock />
-          </header>
+          <Header film={filmInPage} />
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
@@ -56,21 +47,12 @@ function FilmPage(): JSX.Element {
               </p>
 
               <div className="film-card__buttons">
-                <button
-                  onClick={() => navigate(`/player/${filmInPage.id}`)}
-                  className="btn btn--play film-card__button"
-                  type="button"
-                >
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+                <PlayBtn filmId={filmInPage.id} />
                 <MyListBtn filmId={filmInPage.id} />
                 {
                   authorizationStatus === AuthorizationStatus.Auth
                   &&
-                  <Link to={`/films/${filmInPage.id}/review`} className="btn film-card__button">Add review</Link>
+                  <AddReviewBtn filmId={filmInPage.id} />
                 }
 
               </div>
@@ -85,14 +67,17 @@ function FilmPage(): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              <FilmPageTabs film={filmInPage} />
+              <Tabs film={filmInPage} />
             </div>
           </div>
         </div>
       </section>
 
       <div className="page-content">
-        <MoreLikeFilms />
+        <section className="catalog catalog--like-this">
+          <h2 className="catalog__title">More like this</h2>
+          <SimilarFilmList />
+        </section>
         <Footer />
       </div>
     </React.Fragment>

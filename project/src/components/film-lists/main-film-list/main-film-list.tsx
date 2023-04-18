@@ -1,13 +1,13 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { getFilteredFilms } from '../../store/films-data/selectors';
-import { getRenderedFilmsQuantity } from '../../store/film-list/selectors';
-import { resetRenderedFilms, renderMoreFilms } from '../../store/film-list/film-list';
-import { useAppSelector, useAppDispatch } from '../../hooks';
-import FilmCard from '../film-card/film-card';
-import ShowMoreBtn from '../show-more-btn/show-more-btn';
+import { getFilteredFilms } from '../../../store/films-data/selectors';
+import { getRenderedFilmsQuantity } from '../../../store/film-list/selectors';
+import { resetRenderedFilms, renderMoreFilms } from '../../../store/film-list/film-list';
+import { useAppSelector, useAppDispatch } from '../../../hooks';
+import FilmCard from '../../film-card/film-card';
+import ShowMoreBtn from './show-more-btn/show-more-btn';
 
-function FilmList(): JSX.Element {
+function MainFilmList(): JSX.Element {
   const films = useAppSelector(getFilteredFilms);
   const renderedFilmsQuantity = useAppSelector(getRenderedFilmsQuantity);
   const dispatch = useAppDispatch();
@@ -38,4 +38,4 @@ function FilmList(): JSX.Element {
   );
 }
 
-export default FilmList;
+export default MainFilmList;

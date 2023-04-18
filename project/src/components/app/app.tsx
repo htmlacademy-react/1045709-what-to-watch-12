@@ -4,7 +4,7 @@ import { AppRoute } from '../../const';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import MainPage from '../../pages/main-page/main-page';
 import LoginPage from '../../pages/login-page/login-page';
-import UserFilmListPage from '../../pages/user-film-list-page/user-film-list-page';
+import FavoriteFilmsPage from '../../pages/favorite-films-page/favorite-films-page';
 import FilmPage from '../../pages/film-page/film-page';
 import AddReviewPage from '../../pages/add-review-page/add-review-page';
 import VideoPlayerPage from '../../pages/video-player-page/video-player-page';
@@ -41,7 +41,7 @@ function App(): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={authorizationStatus} >
-              <UserFilmListPage />
+              <FavoriteFilmsPage />
             </PrivateRoute>
           }
         />

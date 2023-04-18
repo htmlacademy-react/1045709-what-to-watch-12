@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import NotFoundPage from '../not-found-page/not-found-page';
-import Logo from '../../components/logo/logo';
-import UserBlock from '../../components/user-block/user-block';
-import AddReviewForm from '../../components/add-review-form/add-review-form';
+import Logo from '../../components/header/logo/logo';
+import UserBlock from '../../components/header/user-block/user-block';
+import AddReviewForm from '../../components/forms/add-review-form/add-review-form';
 
 function AddReviewPage(): JSX.Element {
   const filmInReview = useGetFilmInPage();

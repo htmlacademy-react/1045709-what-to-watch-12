@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
-import { getReviewsDataLoadingStatus } from '../../../store/reviews-data/selectors';
-import { getReviews } from '../../../store/reviews-data/selectors';
-import { useAppSelector } from '../../../hooks';
-import { Reviews } from '../../../types/review';
-import { Film } from '../../../types/film';
-import LoadingScreen from '../../../pages/loading-screen/loading-screen';
+import { getReviewsDataLoadingStatus } from '../../../../store/reviews-data/selectors';
+import { getReviews } from '../../../../store/reviews-data/selectors';
+import { useAppSelector } from '../../../../hooks';
+import { Reviews } from '../../../../types/review';
+import { Film } from '../../../../types/film';
+import LoadingScreen from '../../../../pages/loading-screen/loading-screen';
 
 const REVIEW_DATE_FORMAT = 'MMMM d, yyyy';
 

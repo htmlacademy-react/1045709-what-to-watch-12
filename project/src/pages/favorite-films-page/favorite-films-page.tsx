@@ -1,14 +1,13 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { fetchFavoriteFilmAction } from '../../store/api-actions';
-import { getFavoriteFilms, getFavoriteFilmsDataLoadingStatus } from '../../store/films-data/selectors';
-import Logo from '../../components/logo/logo';
-import UserBlock from '../../components/user-block/user-block';
-import FilmCard from '../../components/film-card/film-card';
-import LoadingScreen from '../loading-screen/loading-screen';
+import { getFavoriteFilms } from '../../store/films-data/selectors';
+import Logo from '../../components/header/logo/logo';
+import UserBlock from '../../components/header/user-block/user-block';
+import FavoriteFilmList from '../../components/film-lists/favorite-film-list/favorite-film-list';
 import Footer from '../../components/footer/footer';
 
-function UserFilmListPage(): JSX.Element {
+function FavoriteFilmsPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,7 +15,6 @@ function UserFilmListPage(): JSX.Element {
   }, [dispatch]);
 
   const favoriteFilms = useAppSelector(getFavoriteFilms);
-  const isFavoriteFilmsLoading = useAppSelector(getFavoriteFilmsDataLoadingStatus);
 
   return (
     <div className="user-page">
@@ -30,23 +28,11 @@ function UserFilmListPage(): JSX.Element {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
-        {isFavoriteFilmsLoading ? <LoadingScreen /> :
-          <div className="catalog__films-list">
-            {favoriteFilms.map((film) =>
-              (
-                <FilmCard
-                  key={film.id}
-                  film={film}
-                />
-              )
-            )}
-          </div>}
-
+        <FavoriteFilmList />
       </section>
       < Footer />
     </div>
   );
 }
 
-export default UserFilmListPage;
+export default FavoriteFilmsPage;

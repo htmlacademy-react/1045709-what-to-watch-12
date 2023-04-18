@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { Film } from '../../types/film';
+import { Film } from '../../../types/film';
 import OverviewTab from './overview-tab/overview-tab';
 import DetailsTab from './details-tab/details-tab';
 import ReviewTab from './review-tab/review-tab';
@@ -19,11 +19,11 @@ function getTabContent(film: Film, activeTab: string) {
   }
 }
 
-function FilmPageTabs({film}: FilmPageTabsProps): JSX.Element {
+function Tabs({film}: FilmPageTabsProps): JSX.Element {
   const params = useParams();
   return (
     getTabContent(film, params.tab as string)
   );
 }
 
-export default FilmPageTabs;
+export default Tabs;
