@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../../../const';
 import { format } from 'date-fns';
 import { getReviewsDataLoadingStatus } from '../../../../store/reviews-data/selectors';
 import { getReviews } from '../../../../store/reviews-data/selectors';
@@ -41,13 +42,13 @@ function ReviewTab({film}: ReviewTabProps): JSX.Element {
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
           <li className="film-nav__item">
-            <Link to={`/films/${film.id}/overview`} className="film-nav__link">Overview</Link>
+            <Link to={`${AppRoute.Films}/${film.id}`} className="film-nav__link">Overview</Link>
           </li>
           <li className="film-nav__item">
-            <Link to={`/films/${film.id}/details`} className="film-nav__link">Details</Link>
+            <Link to={`${AppRoute.Films}/${film.id}/${AppRoute.FilmDetailsTab}`} className="film-nav__link">Details</Link>
           </li>
           <li className="film-nav__item film-nav__item--active">
-            <Link to={`/films/${film.id}/reviews`} className="film-nav__link">Reviews</Link>
+            <Link to='#' className="film-nav__link">Reviews</Link>
           </li>
         </ul>
       </nav>

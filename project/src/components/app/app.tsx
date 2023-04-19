@@ -45,20 +45,18 @@ function App(): JSX.Element {
             </PrivateRoute>
           }
         />
-        <Route
-          path={AppRoute.Film}
-          element={<FilmPage />}
-        />
-        <Route
-          path={AppRoute.AddReview}
-          element={
+        <Route path={AppRoute.Film} >
+          <Route index element={<FilmPage />}/>
+          <Route path={AppRoute.FilmTab} element={<FilmPage />} />
+          <Route path={AppRoute.FilmAddReview} element={
             <PrivateRoute authorizationStatus={authorizationStatus} >
               <AddReviewPage />
             </PrivateRoute>
           }
-        />
+          />
+        </Route>
         <Route
-          path={AppRoute.VideoPlayer}
+          path={`${AppRoute.VideoPlayer}/:id`}
           element={<VideoPlayerPage />}
         />
         <Route

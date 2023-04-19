@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RatingValues } from '../../../../const';
+import { AppRoute, RatingValues } from '../../../../const';
 import { Film } from '../../../../types/film';
 
 function getTextFilmRating(rating: number) {
@@ -31,13 +31,13 @@ function OverviewTab({film}: OverviewTabProps): JSX.Element {
       <nav className="film-nav film-card__nav">
         <ul className="film-nav__list">
           <li className="film-nav__item film-nav__item--active">
-            <Link to={`/films/${film.id}/overview`} className="film-nav__link">Overview</Link>
+            <Link to='#' className="film-nav__link">Overview</Link>
           </li>
           <li className="film-nav__item">
-            <Link to={`/films/${film.id}/details`} className="film-nav__link">Details</Link>
+            <Link to={AppRoute.FilmDetailsTab} className="film-nav__link">Details</Link>
           </li>
           <li className="film-nav__item">
-            <Link to={`/films/${film.id}/reviews`} className="film-nav__link">Reviews</Link>
+            <Link to={AppRoute.FilmReviewsTab} className="film-nav__link">Reviews</Link>
           </li>
         </ul>
       </nav>

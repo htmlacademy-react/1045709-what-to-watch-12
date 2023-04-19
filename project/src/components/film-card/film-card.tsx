@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import { Film } from '../../types/film';
 import FilmCardPlayer from './film-card-player/film-card-player';
 
@@ -24,7 +25,7 @@ function FilmCard({film}: FilmCardProps): JSX.Element {
       onMouseOut={handleOnMouseOut}
       className="small-film-card catalog__films-card"
     >
-      <Link to={`/films/${film.id}/overview`}>
+      <Link to={`${AppRoute.Films}/${film.id}`}>
         {
           isActive
             ? <FilmCardPlayer videoSrc={film.videoLink} posterSrc={film.previewImage} />
@@ -35,7 +36,7 @@ function FilmCard({film}: FilmCardProps): JSX.Element {
         }
       </Link>
       <h3 className="small-film-card__title">
-        <Link className="small-film-card__link" to={`/films/${film.id}/overview`}>{film.name}</Link>
+        <Link className="small-film-card__link" to={`${AppRoute.Films}/${film.id}`}>{film.name}</Link>
       </h3>
     </article>
   );

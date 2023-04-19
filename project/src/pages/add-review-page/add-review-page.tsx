@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/header/logo/logo';
@@ -16,7 +17,7 @@ function AddReviewPage(): JSX.Element {
     <section className="film-card film-card--full">
       <div className="film-card__header">
         <div className="film-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={filmInReview.backgroundImage} alt={filmInReview.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -28,7 +29,7 @@ function AddReviewPage(): JSX.Element {
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
-                <Link to={`/films/${filmInReview.id}/overview`} className="breadcrumbs__link">{filmInReview.name}</Link>
+                <Link to={`${AppRoute.Films}/${filmInReview.id}`} className="breadcrumbs__link">{filmInReview.name}</Link>
               </li>
               <li className="breadcrumbs__item">
                 <Link to="#" className="breadcrumbs__link">Add review</Link>

@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom';
+import { AppRoute } from '../../../const';
 import { Film } from '../../../types/film';
 import OverviewTab from './overview-tab/overview-tab';
 import DetailsTab from './details-tab/details-tab';
@@ -10,9 +11,9 @@ type FilmPageTabsProps = {
 
 function getTabContent(film: Film, activeTab: string) {
   switch (activeTab) {
-    case 'details':
+    case AppRoute.FilmDetailsTab:
       return <DetailsTab film={film} />;
-    case 'reviews':
+    case AppRoute.FilmReviewsTab:
       return <ReviewTab film={film} />;
     default:
       return <OverviewTab film={film} />;

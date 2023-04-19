@@ -84,7 +84,7 @@ function VideoPlayer(): JSX.Element {
       />
 
       <button
-        onClick={() => navigate(`${AppRoute.Films}/${filmInVideo.id}/overview`)}
+        onClick={() => navigate(`${AppRoute.Films}/${filmInVideo.id}`)}
         type="button"
         className="player__exit"
       >

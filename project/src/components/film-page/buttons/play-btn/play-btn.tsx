@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../../../const';
 
 function PlayBtn({filmId}: {filmId: number}): JSX.Element {
   const navigate = useNavigate();
 
   return (
     <button
-      onClick={() => navigate(`/player/${filmId}`)}
+      onClick={() => navigate(`${AppRoute.VideoPlayer}/${filmId}`)}
       className="btn btn--play film-card__button"
       type="button"
     >
