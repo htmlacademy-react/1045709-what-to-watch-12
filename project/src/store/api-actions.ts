@@ -90,7 +90,7 @@ export const postReviewAction = createAsyncThunk<void, AddReview, {
   'user/postReview',
   async ({comment, rating, filmId}, {dispatch, extra: api}) => {
     await api.post<AddReview>(`${APIRoute.Reviews}/${filmId}`, {comment, rating});
-    dispatch(redirectToRoute(`${AppRoute.Films}/${filmId}/overview`));
+    dispatch(redirectToRoute(`${AppRoute.Films}/${filmId}`));
   },
 );
 
