@@ -18,6 +18,10 @@ export type FilmData = {
     data: Films;
     isLoading: boolean;
   };
+  film: {
+    data: Film | null;
+    isLoading: boolean;
+  };
   promoFilm: {
     data: Film | null;
     isLoading: boolean;

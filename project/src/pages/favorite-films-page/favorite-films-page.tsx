@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { fetchFavoriteFilmAction } from '../../store/api-actions';
+import { fetchFavoriteFilmsAction } from '../../store/api-actions';
 import { getFavoriteFilms } from '../../store/films-data/selectors';
 import Logo from '../../components/header/logo/logo';
 import UserBlock from '../../components/header/user-block/user-block';
@@ -11,7 +11,7 @@ function FavoriteFilmsPage(): JSX.Element {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(fetchFavoriteFilmAction());
+    dispatch(fetchFavoriteFilmsAction());
   }, [dispatch]);
 
   const favoriteFilms = useAppSelector(getFavoriteFilms);

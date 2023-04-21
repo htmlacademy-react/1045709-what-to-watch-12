@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { NameSpace } from '../../const';
 import { FilmData } from '../../types/state';
-import { fetchFilmAction, fetchFavoriteFilmAction, postFavoriteStatusAction, fetchSimilarFilmAction, fetchPromoFilmAction } from '../api-actions';
+import { fetchFilmsAction, fetchFavoriteFilmsAction, postFavoriteStatusAction, fetchSimilarFilmsAction, fetchFilmByIdAction, fetchPromoFilmAction } from '../api-actions';
 import { FiltersByGenre } from '../../const';
 
 const initialState: FilmData = {
@@ -18,6 +18,10 @@ const initialState: FilmData = {
   },
   similarFilms: {
     data: [],
+    isLoading: false,
+  },
+  film: {
+    data: null,
     isLoading: false,
   },
   promoFilm: {
@@ -40,21 +44,23 @@ export const filmsData = createSlice({
   },
   extraReducers(builder) {
     builder
-      .addCase(fetchFilmAction.pending, (state) => {
+      .addCase(fetchFilmsAction.pending, (state) => {
         state.films.isLoading = true;
       })
-      .addCase(fetchFilmAction.fulfilled, (state, action) => {
+      .addCase(fetchFilmsAction.fulfilled, (state, action) => {
         state.films.data = action.payload;
         state.films.filteredData = action.payload;
         state.films.isLoading = false;
       })
-      .addCase(fetchFavoriteFilmAction.pending, (state) => {
+
+      .addCase(fetchFavoriteFilmsAction.pending, (state) => {
         state.favoriteFilms.isLoading = true;
       })
-      .addCase(fetchFavoriteFilmAction.fulfilled, (state, action) => {
+      .addCase(fetchFavoriteFilmsAction.fulfilled, (state, action) => {
         state.favoriteFilms.data = action.payload;
         state.favoriteFilms.isLoading = false;
       })
+
       .addCase(postFavoriteStatusAction.pending, (state) => {
         state.favoriteFilms.isUpdating = true;
       })
@@ -65,13 +71,26 @@ export const filmsData = createSlice({
         state.favoriteFilms.isUpdating = false;
         toast.error(action.error.message);
       })
-      .addCase(fetchSimilarFilmAction.pending, (state) => {
+
+      .addCase(fetchSimilarFilmsAction.pending, (state) => {
         state.similarFilms.isLoading = true;
       })
-      .addCase(fetchSimilarFilmAction.fulfilled, (state, action) => {
+      .addCase(fetchSimilarFilmsAction.fulfilled, (state, action) => {
         state.similarFilms.data = action.payload;
         state.similarFilms.isLoading = false;
       })
+
+      .addCase(fetchFilmByIdAction.pending, (state) => {
+        state.film.isLoading = true;
+      })
+      .addCase(fetchFilmByIdAction.fulfilled, (state, action) => {
+        state.film.isLoading = false;
+        state.film.data = action.payload;
+      })
+      .addCase(fetchFilmByIdAction.rejected, (state) => {
+        state.film.isLoading = false;
+      })
+
       .addCase(fetchPromoFilmAction.pending, (state) => {
         state.promoFilm.isLoading = true;
       })

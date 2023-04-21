@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom';
+import { getFilmDataLoadingStatus } from '../../store/films-data/selectors';
 import { AppRoute } from '../../const';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/header/logo/logo';
 import UserBlock from '../../components/header/user-block/user-block';
 import AddReviewForm from '../../components/forms/add-review-form/add-review-form';
+import { useAppSelector } from '../../hooks';
+import LoadingScreen from '../loading-screen/loading-screen';
 
 function AddReviewPage(): JSX.Element {
   const filmInReview = useGetFilmInPage();
+  const isFilmDataLoading = useAppSelector(getFilmDataLoadingStatus);
+
+  if (isFilmDataLoading) {
+    return <LoadingScreen />;
+  }
 
   if (!filmInReview) {
     return <NotFoundPage />;

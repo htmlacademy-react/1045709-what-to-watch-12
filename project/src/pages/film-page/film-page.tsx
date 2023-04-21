@@ -1,12 +1,13 @@
 import React from 'react';
 import { useEffect } from 'react';
-import { store } from '../../store';
-import { fetchSimilarFilmAction, fetchReviewsAction } from '../../store/api-actions';
+import { fetchSimilarFilmsAction, fetchReviewsAction } from '../../store/api-actions';
+import { getFilmDataLoadingStatus } from '../../store/films-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { AuthorizationStatus } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';
+import LoadingScreen from '../loading-screen/loading-screen';
 import Header from '../../components/header/header';
 import PlayBtn from '../../components/film-page/buttons/play-btn/play-btn';
 import AddReviewBtn from '../../components/film-page/buttons/add-review-btn/add-review-btn';
@@ -16,16 +17,21 @@ import SimilarFilmList from '../../components/film-lists/similar-film-list.tsx/s
 import Footer from '../../components/footer/footer';
 
 function FilmPage(): JSX.Element {
+  const dispatch = useAppDispatch();
   const filmInPage = useGetFilmInPage();
+  const isFilmDataLoading = useAppSelector(getFilmDataLoadingStatus);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
   useEffect(() => {
     if (filmInPage) {
-      store.dispatch(fetchSimilarFilmAction(filmInPage.id));
-      store.dispatch(fetchReviewsAction(filmInPage.id));
+      dispatch(fetchSimilarFilmsAction(filmInPage.id));
+      dispatch(fetchReviewsAction(filmInPage.id));
     }
-  }, [filmInPage]);
+  }, [dispatch, filmInPage]);
 
+  if (isFilmDataLoading) {
+    return <LoadingScreen />;
+  }
 
   if (!filmInPage) {
     return <NotFoundPage />;

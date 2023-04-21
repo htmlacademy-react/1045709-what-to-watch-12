@@ -1,12 +1,15 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
-import useGetFilmInPage from '../../hooks/useGetFilmInPage';
 import { AppRoute } from '../../const';
-import NotFoundPage from '../../pages/not-found-page/not-found-page';
+import { Film } from '../../types/film';
 import LoadingSpinner from './loading-spinner/loading-spinner';
 import PlayBtn from './control-btn/play-btn';
 import PauseBtn from './control-btn/pause-btn';
+
+type VideoPlayerProps = {
+  film: Film;
+};
 
 const formatRemainingTime = (time: number) => {
   if (time < 3600) {
@@ -16,10 +19,8 @@ const formatRemainingTime = (time: number) => {
   return format(time * 1000, 'hh:mm:ss');
 };
 
-
-function VideoPlayer(): JSX.Element {
+function VideoPlayer({film}: VideoPlayerProps): JSX.Element {
   const navigate = useNavigate();
-  const filmInVideo = useGetFilmInPage();
   const [isLoaded, setIsLoaded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [remainingTime, setRemainingTime] = useState(0);
@@ -65,10 +66,6 @@ function VideoPlayer(): JSX.Element {
     videoRef.current?.requestFullscreen();
   };
 
-  if (!filmInVideo) {
-    return <NotFoundPage />;
-  }
-
   return (
     <div className="player">
 
@@ -78,13 +75,13 @@ function VideoPlayer(): JSX.Element {
         ref={videoRef}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        src={filmInVideo.videoLink}
+        src={film.videoLink}
         className="player__video"
-        poster={filmInVideo.backgroundImage}
+        poster={film.backgroundImage}
       />
 
       <button
-        onClick={() => navigate(`${AppRoute.Films}/${filmInVideo.id}`)}
+        onClick={() => navigate(`${AppRoute.Films}/${film.id}`)}
         type="button"
         className="player__exit"
       >
@@ -92,13 +89,19 @@ function VideoPlayer(): JSX.Element {
       </button>
 
       <div className="player__controls">
-        <div className="player__controls-row">
-          <div className="player__time">
-            <progress className="player__progress" value={currentTime} max={durationTime}></progress>
-            <div className="player__toggler" style={{left: `${runtimeProgress}%`}}>Toggler</div>
-          </div>
-          <div className="player__time-value">{formatRemainingTime(remainingTime)}</div>
-        </div>
+        {
+          isLoaded
+            ?
+            <div className="player__controls-row">
+              <div className="player__time">
+                <progress className="player__progress" value={currentTime} max={durationTime}></progress>
+                <div className="player__toggler" style={{left: `${runtimeProgress}%`}}>Toggler</div>
+              </div>
+              <div className="player__time-value">{formatRemainingTime(remainingTime)}</div>
+            </div>
+            :
+            null
+        }
 
         <div className="player__controls-row">
           {

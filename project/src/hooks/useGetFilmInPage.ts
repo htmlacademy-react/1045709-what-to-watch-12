@@ -1,12 +1,22 @@
 import { useParams } from 'react-router-dom';
-import { useAppSelector } from '.';
-import { getFilms } from '../store/films-data/selectors';
-import { Film } from '../types/film';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '.';
+import { fetchFilmByIdAction } from '../store/api-actions';
+import { getFilm } from '../store/films-data/selectors';
 
 function useGetFilmInPage() {
-  const params = useParams();
-  const films = useAppSelector(getFilms);
-  return films.find((film) => film.id === Number(params.id)) as Film;
+  const id = Number(useParams().id);
+  const film = useAppSelector(getFilm);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (film && film.id === id) {
+      return;
+    }
+    dispatch(fetchFilmByIdAction(id));
+  }, [film, id, dispatch]);
+
+  return film;
 }
 
 export default useGetFilmInPage;
