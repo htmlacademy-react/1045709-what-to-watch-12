@@ -5,7 +5,7 @@ import { FilmData } from '../../types/state';
 import { fetchFilmsAction, fetchFavoriteFilmsAction, postFavoriteStatusAction, fetchSimilarFilmsAction, fetchFilmByIdAction, fetchPromoFilmAction } from '../api-actions';
 import { FiltersByGenre } from '../../const';
 
-const initialState: FilmData = {
+export const initialState: FilmData = {
   films: {
     data: [],
     filteredData: [],
