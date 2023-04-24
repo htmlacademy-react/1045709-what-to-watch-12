@@ -11,6 +11,9 @@ export const getFavoriteFilms = (state: State): Films => state[NameSpace.FilmsDa
 export const getFavoriteFilmsDataLoadingStatus = (state: State): boolean => state[NameSpace.FilmsData].favoriteFilms.isLoading;
 export const getFavoriteDataPostingStatus = (state: State): boolean => state[NameSpace.FilmsData].favoriteFilms.isUpdating;
 
+export const getFilm = (state: State): Film => state[NameSpace.FilmsData].film.data as Film;
+export const getFilmDataLoadingStatus = (state: State): boolean => state[NameSpace.FilmsData].film.isLoading;
+
 export const getPromoFilm = (state: State): Film => state[NameSpace.FilmsData].promoFilm.data as Film;
 export const getPromoFilmDataLoadingStatus = (state: State): boolean => state[NameSpace.FilmsData].promoFilm.isLoading;
 

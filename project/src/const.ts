@@ -2,10 +2,13 @@ export enum AppRoute {
   Root = '/',
   Login = '/login',
   MyList = '/mylist',
-  Film = '/films/:id/:tab',
+  VideoPlayer = '/player',
   Films = '/films',
-  AddReview = '/films/:id/review',
-  VideoPlayer = '/player/:id',
+  Film = '/films/:id',
+  FilmTab = ':tab',
+  FilmDetailsTab = 'details',
+  FilmReviewsTab = 'reviews',
+  FilmAddReview = 'review',
 }
 
 export enum AuthorizationStatus {
@@ -72,6 +75,29 @@ export const FiltersByGenre = {
     filterName: 'Thrillers',
     filterValue: 'Thriller'
   },
+} as const;
+
+export const RatingValues = {
+  BAD: {
+    startValue: 0,
+    text: 'Bad'
+  },
+  NORMAL: {
+    startValue: 3,
+    text: 'Normal'
+  },
+  GOOD: {
+    startValue: 5,
+    text: 'Good'
+  },
+  VERY_GOOD: {
+    startValue: 8,
+    text: 'Very good'
+  },
+  AWESOME: {
+    startValue: 10,
+    text: 'Awesome'
+  }
 } as const;
 
 export const DEFAULT_RENDERED_FILMS_QUANTITY = 8;
