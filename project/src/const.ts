@@ -35,66 +35,66 @@ export enum NameSpace {
 }
 
 export const FiltersByGenre = {
-  ALL_GENRES: {
+  All: {
     filterName: 'All genres',
     filterValue: 'All'
   },
-  COMEDIES: {
+  Comedies: {
     filterName: 'Comedies',
     filterValue: 'Comedy'
   },
-  CRIME: {
+  Crime: {
     filterName: 'Crime',
     filterValue: 'Crime'
   },
-  DOCUMENTARY: {
+  Documentary: {
     filterName: 'Documentary',
     filterValue: 'Documentary'
   },
-  DRAMAS: {
+  Dramas: {
     filterName: 'Dramas',
     filterValue: 'Drama'
   },
-  HORROR: {
+  Horror: {
     filterName: 'Horror',
     filterValue: 'Horror'
   },
-  KIDS_AND_FAMILY: {
+  KidsFamily: {
     filterName: 'Kids & Family',
     filterValue: 'Family'
   },
-  ROMANCE: {
+  Romance: {
     filterName: 'Romance',
     filterValue: 'Romance'
   },
-  SCI_FI: {
+  SciFi: {
     filterName: 'Sci-Fi',
     filterValue: 'SciFi'
   },
-  THRILLERS: {
+  Thrillers: {
     filterName: 'Thrillers',
     filterValue: 'Thriller'
   },
 } as const;
 
 export const RatingValues = {
-  BAD: {
+  Bad: {
     startValue: 0,
     text: 'Bad'
   },
-  NORMAL: {
+  Normal: {
     startValue: 3,
     text: 'Normal'
   },
-  GOOD: {
+  Good: {
     startValue: 5,
     text: 'Good'
   },
-  VERY_GOOD: {
+  VeryGood: {
     startValue: 8,
     text: 'Very good'
   },
-  AWESOME: {
+  Awesome: {
     startValue: 10,
     text: 'Awesome'
   }
