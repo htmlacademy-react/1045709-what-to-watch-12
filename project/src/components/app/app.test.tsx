@@ -3,7 +3,7 @@ import { createMemoryHistory } from 'history';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { configureMockStore } from '@jedmao/redux-mock-store';
-import HistoryRouter from '../history-route/history-route';
+import HistoryRouter from '../../hocs/history-route/history-route';
 import { makeFakeFilm, makeFakeReview } from '../../utils/mocks';
 import { AuthorizationStatus, AppRoute } from '../../const';
 import App from './app';

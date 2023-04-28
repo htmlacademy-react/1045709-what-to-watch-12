@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
-import HistoryRouter from '../../components/history-route/history-route';
+import HistoryRouter from '../../hocs/history-route/history-route';
 import LoadingScreen from './loading-screen';
 
 describe('Component: LoadingScreen', () => {
