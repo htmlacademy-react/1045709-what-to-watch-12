@@ -64,7 +64,13 @@ function LoginForm(): JSX.Element {
             name="user-email"
             id="user-email"
           />
-          <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
+          <label
+            className="sign-in__label visually-hidden"
+            htmlFor="user-email"
+            data-testid="login"
+          >
+            Email address
+          </label>
         </div>
         <div className="sign-in__field">
           <input
@@ -73,7 +79,13 @@ function LoginForm(): JSX.Element {
             placeholder="Password" name="user-password"
             id="user-password"
           />
-          <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
+          <label
+            className="sign-in__label visually-hidden"
+            htmlFor="user-password"
+            data-testid="password"
+          >
+              Password
+          </label>
         </div>
       </div>
       <div className="sign-in__submit">

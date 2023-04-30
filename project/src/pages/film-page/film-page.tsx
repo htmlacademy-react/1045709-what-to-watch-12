@@ -4,7 +4,7 @@ import { fetchSimilarFilmsAction, fetchReviewsAction } from '../../store/api-act
 import { getFilmDataLoadingStatus } from '../../store/films-data/selectors';
 import { getAuthorizationStatus } from '../../store/user-process/selectors';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import useGetFilmInPage from '../../hooks/useGetFilmInPage';
+import useGetFilmInPage from '../../hooks/use-get-film-in-page';
 import { AuthorizationStatus } from '../../const';
 import NotFoundPage from '../not-found-page/not-found-page';
 import LoadingScreen from '../loading-screen/loading-screen';
