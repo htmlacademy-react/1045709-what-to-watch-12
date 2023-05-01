@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { getFilmDataLoadingStatus } from '../../store/films-data/selectors';
 import { AppRoute } from '../../const';
-import useGetFilmInPage from '../../hooks/useGetFilmInPage';
+import useGetFilmInPage from '../../hooks/use-get-film-in-page';
 import NotFoundPage from '../not-found-page/not-found-page';
 import Logo from '../../components/header/logo/logo';
 import UserBlock from '../../components/header/user-block/user-block';

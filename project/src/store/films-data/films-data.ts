@@ -35,7 +35,7 @@ export const filmsData = createSlice({
   initialState,
   reducers: {
     filterFilmsByGenre: (state, action) => {
-      if (action.payload === FiltersByGenre.ALL_GENRES.filterValue) {
+      if (action.payload === FiltersByGenre.All.filterValue) {
         state.films.filteredData = state.films.data;
         return;
       }

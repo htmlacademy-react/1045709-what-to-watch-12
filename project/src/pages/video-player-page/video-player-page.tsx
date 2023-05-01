@@ -1,4 +1,4 @@
-import useGetFilmInPage from '../../hooks/useGetFilmInPage';
+import useGetFilmInPage from '../../hooks/use-get-film-in-page';
 import { useAppSelector } from '../../hooks';
 import { getFilmDataLoadingStatus } from '../../store/films-data/selectors';
 import LoadingScreen from '../loading-screen/loading-screen';

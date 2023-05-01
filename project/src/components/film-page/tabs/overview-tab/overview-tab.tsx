@@ -3,22 +3,24 @@ import { Link } from 'react-router-dom';
 import { AppRoute, RatingValues } from '../../../../const';
 import { Film } from '../../../../types/film';
 
-function getTextFilmRating(rating: number) {
-  if (rating < RatingValues.NORMAL.startValue) {
-    return RatingValues.BAD.text;
+export function getTextFilmRating(rating: number) {
+  if (rating < RatingValues.Normal.startValue) {
+    return RatingValues.Bad.text;
   }
-  if (rating < RatingValues.GOOD.startValue) {
-    return RatingValues.NORMAL.text;
+  if (rating < RatingValues.Good.startValue) {
+    return RatingValues.Normal.text;
   }
-  if (rating < RatingValues.VERY_GOOD.startValue) {
-    return RatingValues.GOOD.text;
+  if (rating < RatingValues.VeryGood.startValue) {
+    return RatingValues.Good.text;
   }
-  if (rating < RatingValues.AWESOME.startValue) {
-    return RatingValues.VERY_GOOD.text;
+  if (rating < RatingValues.Awesome.startValue) {
+    return RatingValues.VeryGood.text;
   }
-  if (rating === RatingValues.AWESOME.startValue) {
-    return RatingValues.AWESOME.text;
+  if (rating === RatingValues.Awesome.startValue) {
+    return RatingValues.Awesome.text;
   }
+
+  return 'No rating';
 }
 
 type OverviewTabProps = {

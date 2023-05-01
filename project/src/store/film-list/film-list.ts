@@ -4,7 +4,7 @@ import { FilmList } from '../../types/state';
 
 const initialState: FilmList = {
   renderedFilmsQuantity: DEFAULT_RENDERED_FILMS_QUANTITY,
-  activeGenre: FiltersByGenre.ALL_GENRES.filterValue,
+  activeGenre: FiltersByGenre.All.filterValue,
 };
 
 export const filmList = createSlice({
