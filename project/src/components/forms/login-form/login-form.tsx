@@ -48,6 +48,7 @@ function LoginForm(): JSX.Element {
       action="#"
       className="sign-in__form"
       onSubmit={handleSubmit}
+      data-testid="login-form"
     >
       {errorMessage ?
         <div className='sign-in__message'>
