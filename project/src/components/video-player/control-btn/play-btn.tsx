@@ -6,7 +6,7 @@ type PlayBtnProps = {
 
 function PlayBtn({onClick}: PlayBtnProps): JSX.Element {
   return (
-    <button type="button" className="player__play" onClick={onClick}>
+    <button data-testid="play-btn" type="button" className="player__play" onClick={onClick}>
       <svg
         viewBox='0 0 19 19'
         width='19'

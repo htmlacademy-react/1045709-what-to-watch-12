@@ -27,6 +27,7 @@ function LoadingSpinner(): JSX.Element {
         style={circleStyle}
         animate={{ rotate: 360 }}
         transition={spinTransition}
+        data-testid="spinner"
       />
     </div>
   );

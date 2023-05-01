@@ -78,6 +78,7 @@ function VideoPlayer({film}: VideoPlayerProps): JSX.Element {
         src={film.videoLink}
         className="player__video"
         poster={film.backgroundImage}
+        data-testid="video-element"
       />
 
       <button

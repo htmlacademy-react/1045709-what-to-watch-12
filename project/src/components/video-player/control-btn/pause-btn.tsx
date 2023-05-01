@@ -6,7 +6,7 @@ type PauseBtnProps = {
 
 function PauseBtn({onClick}: PauseBtnProps): JSX.Element {
   return (
-    <button type="button" className="player__play" onClick={onClick}>
+    <button data-testid="pause-btn" type="button" className="player__play" onClick={onClick}>
       <svg
         viewBox='0 0 14 21'
         width='14'
