@@ -26,6 +26,7 @@ function FilmCardPlayer({videoSrc, posterSrc}: VideoPlayerProps): JSX.Element {
       ref={videoRef}
       width="280"
       height="175"
+      data-testid="film-video"
     >
       <source src={videoSrc} />
     </video>
